@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Snake</name>
+    </assembly>
+    <members>
+        <member name="T:Snake.Board">
+            <summary>
+            Represents a rectangular board.
+            </summary>
+        </member>
+        <member name="P:Snake.Board.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the square at the given X and Y coordinates.
+            </summary>
+            <param name="x">The zero-based X coordinate that corresponds to one less than the file number.</param>
+            <param name="y">The zero-based Y coordinate that corresponds to one less than the rank number.</param>
+            <returns>The square at the given corrdinates.</returns>
+        </member>
+        <member name="P:Snake.Board.Width">
+            <summary>
+            Gets the width of the board, in squares, that corresponds to the number of files.
+            </summary>
+        </member>
+        <member name="P:Snake.Board.Height">
+            <summary>
+            Gets the height of the board, in squares, that corresponds to the number of ranks.
+            </summary>
+        </member>
+        <member name="M:Snake.Board.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Snake.Board"/> class.
+            </summary>
+            <param name="width">The width of the board, in squares, that corresponds to the number of files.</param>
+            <param name="height">The height of the board, in squares, that corresponds to the number of ranks.</param>
+        </member>
+        <member name="T:Snake.Piece">
+            <summary>
+            Represents a playing piece.
+            </summary>
+        </member>
+        <member name="T:Snake.Square">
+            <summary>
+            Represents a square on a board.
+            </summary>
+        </member>
+        <member name="P:Snake.Square.Empty">
+            <summary>
+            Gets a value that indicates whether the square is empty.
+            </summary>
+            <value><see langword="true"/> if the square does not contain a piece; otherwise, <see langword="false"/>.</value>
+        </member>
+        <member name="P:Snake.Square.Piece">
+            <summary>
+            Gets or sets the piece that occupies the square.
+            </summary>
+            <value>The piece that occupies the square or <see langword="null"/> if the square is empty. The default is <see langword="null"/>.</value>
+        </member>
+    </members>
+</doc>
