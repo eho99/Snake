@@ -1,18 +1,29 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace Snake.Application
 {
-    // ctrl+. fix problem, refactor
-    // ctrl+k,ctrl+d format
-    // ctrl+k,ctrl+c comment
-    // ctrl+k,ctrl+u uncomment
-    // ctrl+r,ctrl+r rename
     internal static class Program
     {
         private static void Main()
         {
-            
+            Board board = new Board();
+            IPieceFactory pieceFactory = new PieceFactory();
+            Player white = new Player();
+            Piece rook = pieceFactory.CreateRook(white);
+
+            foreach (Square square in Square.GetValues())
+            {
+                board[square] = rook;
+
+                IEnumerable<IMove> moves = rook.GetMoves();
+
+                Console.Write(rook);
+                Console.Write(" on ");
+                Console.Write(rook.Square);
+                Console.Write(" can perform the following: ");
+                Console.WriteLine(String.Join(", ", moves));
+            }
         }
     }
 }

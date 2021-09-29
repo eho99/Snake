@@ -5,42 +5,39 @@
     /// </summary>
     public class Board
     {
-        private readonly Square[,] _squares;
+        private readonly Piece[,] _pieces;
 
         /// <summary>
-        /// Gets the square at the given X and Y coordinates.
+        /// Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. 
         /// </summary>
-        /// <param name="x">The zero-based X coordinate that corresponds to one less than the file number.</param>
-        /// <param name="y">The zero-based Y coordinate that corresponds to one less than the rank number.</param>
-        /// <returns>The square at the given corrdinates.</returns>
-        public Square this[int x, int y]
+        /// <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
+        public Piece this[Square square]
         {
             get
             {
-                return this._squares[x, y];
+                return this._pieces[square.X, square.Y];
+            }
+            set
+            {
+                if (value is not null)
+                {
+                    Square old = value.Square;
+
+                    this._pieces[old.X, old.Y] = null;
+
+                    value.Square = square;
+                }
+
+                this._pieces[square.X, square.Y] = value;
             }
         }
 
         /// <summary>
-        /// Gets the width of the board, in squares, that corresponds to the number of files.
-        /// </summary>
-        public int Width { get; }
-
-        /// <summary>
-        /// Gets the height of the board, in squares, that corresponds to the number of ranks.
-        /// </summary>
-        public int Height { get; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Board"/> class.
         /// </summary>
-        /// <param name="width">The width of the board, in squares, that corresponds to the number of files.</param>
-        /// <param name="height">The height of the board, in squares, that corresponds to the number of ranks.</param>
-        public Board(int width, int height)
+        public Board()
         {
-            this.Width = width;
-            this.Height = height;
-            this._squares = new Square[width, height];
+            this._pieces = new Piece[Square.Files, Square.Ranks];
         }
     }
 }
