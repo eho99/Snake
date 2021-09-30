@@ -12,9 +12,8 @@ namespace Snake
         public IEnumerable<IMove> GetMoves(Piece piece)
         {
             Square source = piece.Square;
-            Player player = piece.Player;
 
-            yield return new Move(piece, new Square(source.X, source.Y + (int)player.Direction));
+            yield return new Move(piece, new Square(source.X, source.Y + (int)piece.Player.Direction));
         }
     }
 }

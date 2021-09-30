@@ -13,7 +13,7 @@
     <RootNamespace>Snake.Documentation</RootNamespace>
     <Name>Snake.Documentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>Documentation\</OutputPath>
     <HtmlHelpName>Snake</HtmlHelpName>
     <Language>en-US</Language>
@@ -30,7 +30,7 @@
       <DocumentationSource sourceFile="..\Snake.sln" xmlns="" />
     </DocumentationSources>
     <HelpFileFormat>Markdown</HelpFileFormat>
-    <SyntaxFilters>C#, Visual Basic, Visual Basic Usage, Managed C++, F#, J#, JScript, JavaScript</SyntaxFilters>
+    <SyntaxFilters>C#, Visual Basic, Managed C++, F#, J#</SyntaxFilters>
     <PresentationStyle>Markdown</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>True</KeepLogFile>
@@ -72,65 +72,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Documentation\" />
     <Folder Include="icons" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documentation\Fields_T_Snake_Square.md" />
-    <Content Include="Documentation\F_Snake_Square_Files.md" />
-    <Content Include="Documentation\F_Snake_Square_MaxFile.md" />
-    <Content Include="Documentation\F_Snake_Square_MaxRank.md" />
-    <Content Include="Documentation\F_Snake_Square_Ranks.md" />
-    <Content Include="Documentation\Home.md" />
-    <Content Include="Documentation\Methods_T_Snake_Board.md" />
-    <Content Include="Documentation\Methods_T_Snake_IMoveProvider.md" />
-    <Content Include="Documentation\Methods_T_Snake_IPieceFactory.md" />
-    <Content Include="Documentation\Methods_T_Snake_Piece.md" />
-    <Content Include="Documentation\Methods_T_Snake_PieceFactory.md" />
-    <Content Include="Documentation\Methods_T_Snake_Player.md" />
-    <Content Include="Documentation\Methods_T_Snake_Square.md" />
-    <Content Include="Documentation\M_Snake_Board__ctor.md" />
-    <Content Include="Documentation\M_Snake_IMoveProvider_GetMoves.md" />
-    <Content Include="Documentation\M_Snake_IPieceFactory_CreateBishop.md" />
-    <Content Include="Documentation\M_Snake_IPieceFactory_CreateQueen.md" />
-    <Content Include="Documentation\M_Snake_IPieceFactory_CreateRook.md" />
-    <Content Include="Documentation\M_Snake_PieceFactory_CreateBishop.md" />
-    <Content Include="Documentation\M_Snake_PieceFactory_CreateQueen.md" />
-    <Content Include="Documentation\M_Snake_PieceFactory_CreateRook.md" />
-    <Content Include="Documentation\M_Snake_PieceFactory__ctor.md" />
-    <Content Include="Documentation\M_Snake_Piece_GetMoves.md" />
-    <Content Include="Documentation\M_Snake_Piece_ToString.md" />
-    <Content Include="Documentation\M_Snake_Piece__ctor.md" />
-    <Content Include="Documentation\M_Snake_Player__ctor.md" />
-    <Content Include="Documentation\M_Snake_Square_GetValues.md" />
-    <Content Include="Documentation\M_Snake_Square_ToString.md" />
-    <Content Include="Documentation\M_Snake_Square__ctor.md" />
-    <Content Include="Documentation\N_Snake.md" />
-    <Content Include="Documentation\Properties_T_Snake_Board.md" />
-    <Content Include="Documentation\Properties_T_Snake_Piece.md" />
-    <Content Include="Documentation\Properties_T_Snake_Square.md" />
-    <Content Include="Documentation\P_Snake_Board_Item.md" />
-    <Content Include="Documentation\P_Snake_Piece_Player.md" />
-    <Content Include="Documentation\P_Snake_Piece_Square.md" />
-    <Content Include="Documentation\P_Snake_Piece_Symbol.md" />
-    <Content Include="Documentation\P_Snake_Square_File.md" />
-    <Content Include="Documentation\P_Snake_Square_Rank.md" />
-    <Content Include="Documentation\P_Snake_Square_X.md" />
-    <Content Include="Documentation\P_Snake_Square_Y.md" />
-    <Content Include="Documentation\T_Snake_Board.md" />
-    <Content Include="Documentation\T_Snake_IMove.md" />
-    <Content Include="Documentation\T_Snake_IMoveProvider.md" />
-    <Content Include="Documentation\T_Snake_IPieceFactory.md" />
-    <Content Include="Documentation\T_Snake_Piece.md" />
-    <Content Include="Documentation\T_Snake_PieceFactory.md" />
-    <Content Include="Documentation\T_Snake_Player.md" />
-    <Content Include="Documentation\T_Snake_Square.md" />
-    <Content Include="Documentation\_Footer.md" />
-    <Content Include="Documentation\_Sidebar.md" />
     <Content Include="icons\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Documentation\LastBuild.log" />
   </ItemGroup>
   <!-- Uncomment this to use the NuGet packages when SHFB is not installed locally, e.g. in the CI build pipeline.
 			Update the package versions to the latest releases.

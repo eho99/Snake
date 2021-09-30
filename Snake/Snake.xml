@@ -20,6 +20,26 @@
             Initializes a new instance of the <see cref="T:Snake.Board"/> class.
             </summary>
         </member>
+        <member name="T:Snake.Direction">
+            <summary>
+            Specifies a direction of motion.
+            </summary>
+        </member>
+        <member name="F:Snake.Direction.Forward">
+            <summary>
+            The back-to-front direction, beginning from the first rank and advancing toward the eighth rank.
+            </summary>
+        </member>
+        <member name="F:Snake.Direction.None">
+            <summary>
+            No specified direction.
+            </summary>
+        </member>
+        <member name="F:Snake.Direction.Backward">
+            <summary>
+            The front-to-back direction, beginning from the eighth rank and advancing toward the first rank.
+            </summary>
+        </member>
         <member name="T:Snake.IMove">
             <summary>
             Defines a move.
@@ -163,6 +183,17 @@
             <summary>
             Represents a player.
             </summary>
+        </member>
+        <member name="P:Snake.Player.Direction">
+            <summary>
+            Gets the direction in which the player's pieces advance.
+            </summary>
+        </member>
+        <member name="M:Snake.Player.#ctor(Snake.Direction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Snake.Player"/> class.
+            </summary>
+            <param name="direction">The direction in which the player's pieces advance.</param>
         </member>
         <member name="T:Snake.Square">
             <summary>
