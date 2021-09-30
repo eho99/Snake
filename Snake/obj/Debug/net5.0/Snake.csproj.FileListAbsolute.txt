@@ -1,0 +1,13 @@
+C:\Users\kayle\source\repos\Snake-master\Snake\bin\Debug\net5.0\Snake.deps.json
+C:\Users\kayle\source\repos\Snake-master\Snake\bin\Debug\net5.0\Snake.dll
+C:\Users\kayle\source\repos\Snake-master\Snake\bin\Debug\net5.0\ref\Snake.dll
+C:\Users\kayle\source\repos\Snake-master\Snake\bin\Debug\net5.0\Snake.pdb
+C:\Users\kayle\source\repos\Snake-master\Snake\bin\Debug\net5.0\Snake.xml
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.csprojAssemblyReference.cache
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.AssemblyInfoInputs.cache
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.AssemblyInfo.cs
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.csproj.CoreCompileInputs.cache
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.dll
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\ref\Snake.dll
+C:\Users\kayle\source\repos\Snake-master\Snake\obj\Debug\net5.0\Snake.pdb
