@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Snake
 {
@@ -8,22 +7,46 @@ namespace Snake
         public IEnumerable<IMove> GetMoves(Piece piece)
         {
             Square source = piece.Square;
-            
-            for (int i = 0; i < 8)
-            /*
-            for (int x = 0; x < Square.Files; x++)
+
+            if (Square.TryCreate(source.X + 2, source.Y + 1, out Square result))
             {
-                for (int y = 0; y < Square.Ranks; y++)
-                {
-                    if (Math.Abs((double)(y - source.Y) / (x - source.X)) == 2 || Math.Abs((double)(y - source.Y) / (x - source.X)) == 0.5)
-                    {
-                        yield return new Move(piece, new Square(x, y));
-                    }
-                }
+                yield return new Move(piece, result);
             }
-            */
 
+            if (Square.TryCreate(source.X + 2, source.Y - 1, out result))
+            {
+                yield return new Move(piece, result);
+            }
 
+            if (Square.TryCreate(source.X + 1, source.Y + 2, out result))
+            {
+                yield return new Move(piece, result);
+            }
+
+            if (Square.TryCreate(source.X + 1, source.Y - 2, out result))
+            {
+                yield return new Move(piece, result);
+            }
+
+            if (Square.TryCreate(source.X - 2, source.Y + 1, out result))
+            {
+                yield return new Move(piece, result);
+            }
+
+            if (Square.TryCreate(source.X - 2, source.Y - 1, out result))
+            {
+                yield return new Move(piece, result);
+            }
+
+            if (Square.TryCreate(source.X - 1, source.Y + 2, out result))
+            {
+                yield return new Move(piece, result);
+            }
+
+            if (Square.TryCreate(source.X - 1, source.Y - 2, out result))
+            {
+                yield return new Move(piece, result);
+            }
         }
     }
 }

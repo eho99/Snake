@@ -85,6 +85,29 @@ namespace Snake
         }
 
         /// <summary>
+        /// Converts the zero-based horizontal and vertical coordinates of a number to a <see cref="Square"/> instance. A return value indicates whether the operation succeeded.
+        /// </summary>
+        /// <param name="x">The zero-based horizontal coordinate.</param>
+        /// <param name="y">The zero-based vertical coordinate.</param>
+        /// <param name="result">When this method returns, contains the square value equivalent of the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="Ranks"/>. This parameter is treated as uninitialized.</param>
+        /// <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
+        public static bool TryCreate(int x, int y, out Square result)
+        {
+            if (x >= 0 && x <= Files && y >= 0 && y <= Files)
+            {
+                result = new Square(x, y);
+
+                return true;
+            }
+            else
+            {
+                result = default;
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Gets a collection of new <see cref="Square"/> instances that represent all the possible values.
         /// </summary>
         /// <returns>A collection of new <see cref="Square"/> instances.</returns>
