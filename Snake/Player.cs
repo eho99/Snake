@@ -9,5 +9,11 @@ namespace Snake
     /// </summary>
     public class Player
     {
+        public Direction Direction { get; }
+
+        public Player(Direction direction)
+        {
+            this.Direction = direction;
+        }
     }
 }

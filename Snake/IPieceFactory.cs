@@ -36,5 +36,12 @@ namespace Snake
         /// <param name="player">The player that owns the piece.</param>
         /// <returns>The new knight piece.</returns>
         Piece CreateKnight(Player player);
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="Piece"/> class, initialized as a pawn.
+        /// </summary>
+        /// <param name="player">The player that owns the piece.</param>
+        /// <returns>The new pawn piece.</returns>
+        Piece CreatePawn(Player player);
     }
 }

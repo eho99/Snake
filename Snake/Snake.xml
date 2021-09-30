@@ -81,6 +81,13 @@
             <param name="player">The player that owns the piece.</param>
             <returns>The new knight piece.</returns>
         </member>
+        <member name="M:Snake.IPieceFactory.CreatePawn(Snake.Player)">
+            <summary>
+            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a pawn.
+            </summary>
+            <param name="player">The player that owns the piece.</param>
+            <returns>The new pawn piece.</returns>
+        </member>
         <member name="T:Snake.Piece">
             <summary>
             Represents a playing piece.
@@ -141,6 +148,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Snake.PieceFactory.CreateKnight(Snake.Player)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Snake.PieceFactory.CreatePawn(Snake.Player)">
             <inheritdoc/>
         </member>
         <member name="T:Snake.Player">
