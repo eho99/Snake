@@ -1,4 +1,8 @@
-﻿namespace Snake
+﻿// Project Snake: IPieceFactory.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+namespace Snake
 {
     /// <summary>
     /// Defines methods for creating instances of the <see cref="Piece"/> class.

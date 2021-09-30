@@ -10,6 +10,9 @@ EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Snake.Documentation", "Snake.Documentation\Snake.Documentation.shfbproj", "{11D2457A-5ECE-4A04-A779-FF6B739888DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28FFDB99-528F-4F94-A84B-45A06CAC4100}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

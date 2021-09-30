@@ -1,4 +1,8 @@
-﻿namespace Snake
+﻿// Project Snake: Board.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+namespace Snake
 {
     /// <summary>
     /// Represents a rectangular board.
@@ -13,10 +17,7 @@
         /// <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
         public Piece this[Square square]
         {
-            get
-            {
-                return this._pieces[square.X, square.Y];
-            }
+            get => this._pieces[square.X, square.Y];
             set
             {
                 if (value is not null)

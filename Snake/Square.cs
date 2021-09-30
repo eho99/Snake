@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Project Snake: Square.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+using System;
 using System.Collections.Generic;
 
 namespace Snake
@@ -46,25 +50,13 @@ namespace Snake
         /// Gets the rank number of the square.
         /// </summary>
         /// <value>The rank number. The default is <c>1</c>.</value>
-        public int Rank
-        {
-            get
-            {
-                return MaxRank - this.Y;
-            }
-        }
+        public int Rank => MaxRank - this.Y;
 
         /// <summary>
         /// Gets the file letter of the square.
         /// </summary>
         /// <value>The file letter. The default is <c>A</c>.</value>
-        public char File
-        {
-            get
-            {
-                return Alphabet[this.X];
-            }
-        }
+        public char File => Alphabet[this.X];
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Square"/> struct.	

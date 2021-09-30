@@ -8,19 +8,23 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kayle\\.nuget\\packages\\": {}
+    "C:\\Users\\ishan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kayle\\source\\repos\\Snake-master\\Snake\\Snake.csproj",
+      "projectUniqueName": "C:\\Users\\ishan\\Source\\Repos\\Snake\\Snake\\Snake.csproj",
       "projectName": "Snake",
-      "projectPath": "C:\\Users\\kayle\\source\\repos\\Snake-master\\Snake\\Snake.csproj",
-      "packagesPath": "C:\\Users\\kayle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kayle\\source\\repos\\Snake-master\\Snake\\obj\\",
+      "projectPath": "C:\\Users\\ishan\\Source\\Repos\\Snake\\Snake\\Snake.csproj",
+      "packagesPath": "C:\\Users\\ishan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ishan\\Source\\Repos\\Snake\\Snake\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\kayle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ishan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
