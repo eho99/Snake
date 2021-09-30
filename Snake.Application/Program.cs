@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Snake.Application
 {
@@ -10,18 +11,19 @@ namespace Snake.Application
             Board board = new Board();
             IPieceFactory pieceFactory = new PieceFactory();
             Player white = new Player();
-            Piece rook = pieceFactory.CreateRook(white);
+            Piece piece = pieceFactory.CreateKnight(white);
 
             foreach (Square square in Square.GetValues())
             {
-                board[square] = rook;
+                board[square] = piece;
 
-                IEnumerable<IMove> moves = rook.GetMoves();
+                List<IMove> moves = piece.GetMoves().ToList();
 
-                Console.Write(rook);
+                Console.Write(piece);
                 Console.Write(" on ");
-                Console.Write(rook.Square);
-                Console.Write(" can perform the following: ");
+                Console.Write(piece.Square);
+                Console.Write(" can perform the following ");
+                Console.Write(moves.Count + " moves: ");
                 Console.WriteLine(String.Join(", ", moves));
             }
         }

@@ -10,9 +10,12 @@ namespace Snake
 	{
 		private readonly OrthogonalMoveProvider _orthogonalMoveProvider = new OrthogonalMoveProvider();
 		private readonly DiagonalMoveProvider _diagonalMoveProvider = new DiagonalMoveProvider();
+		private readonly LShapeMoveProvider _lShapeMoveProvider = new LShapeMoveProvider();
+
 		private readonly AggregateMoveProvider _rookMoveProvider;
 		private readonly AggregateMoveProvider _bishopMoveProvider;
 		private readonly AggregateMoveProvider _queenMoveProvider;
+		private readonly AggregateMoveProvider _knightMoveProvider;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PieceFactory"/>.
@@ -40,6 +43,13 @@ namespace Snake
 					this._orthogonalMoveProvider
 				},
 				Enumerable.Empty<IMoveFilter>());
+
+			this._knightMoveProvider = new AggregateMoveProvider(
+				new List<IMoveProvider>()
+				{
+					this._lShapeMoveProvider
+				},
+				Enumerable.Empty<IMoveFilter>());
 		}
 
 		/// <inheritdoc/>
@@ -58,6 +68,12 @@ namespace Snake
 		public Piece CreateQueen(Player player)
 		{
 			return new Piece(player, 'Q', this._queenMoveProvider);
+		}
+
+		/// <inheritdoc/>
+		public Piece CreateKnight(Player player)
+		{
+			return new Piece(player, 'N', this._knightMoveProvider);
 		}
 	}
 }
