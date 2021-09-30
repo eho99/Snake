@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Project Snake: DiagonalMoveProvider.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+using System;
 using System.Collections.Generic;
 
 namespace Snake
@@ -13,14 +17,12 @@ namespace Snake
             {
                 for (int y = 0; y < Square.Ranks; y++)
                 {
-                    if (Math.Abs((double) (y - source.Y)/(x - source.X)) == 1)
+                    if (Math.Abs((double)(y - source.Y) / (x - source.X)) == 1)
                     {
                         yield return new Move(piece, new Square(x, y));
                     }
                 }
             }
-
-            
         }
     }
 }
