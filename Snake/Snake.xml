@@ -11,7 +11,7 @@
         </member>
         <member name="P:Snake.Board.Item(Snake.Square)">
             <summary>
-            Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. 
+            Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. Any existing piece on the destination square is removed from the board.
             </summary>
             <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
         </member>
@@ -102,7 +102,13 @@
             <summary>
             Gets the square that contains the piece.
             </summary>
-            <value>Thes square that contains the piece.</value>
+            <value>The square that contains the piece.</value>
+        </member>
+        <member name="P:Snake.Piece.Board">
+            <summary>
+            Gets the board that contains the piece.
+            </summary>
+            <value>The board that contains the piece.</value>
         </member>
         <member name="M:Snake.Piece.#ctor(Snake.Player,System.Char,Snake.IMoveProvider)">
             <summary>
@@ -203,6 +209,15 @@
             </summary>
             <param name="x">The zero-based horizontal coordinate.</param>
             <param name="y">The zero-based vertical coordinate.</param>
+        </member>
+        <member name="M:Snake.Square.TryCreate(System.Int32,System.Int32,Snake.Square@)">
+            <summary>
+            Converts the zero-based horizontal and vertical coordinates of a number to a <see cref="T:Snake.Square"/> instance. A return value indicates whether the operation succeeded.
+            </summary>
+            <param name="x">The zero-based horizontal coordinate.</param>
+            <param name="y">The zero-based vertical coordinate.</param>
+            <param name="result">When this method returns, contains the square value equivalent of the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="T:Snake.Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Ranks"/>. This parameter is treated as uninitialized.</param>
+            <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:Snake.Square.GetValues">
             <summary>

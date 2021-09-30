@@ -28,8 +28,14 @@ namespace Snake
         /// <summary>
         /// Gets the square that contains the piece.
         /// </summary>
-        /// <value>Thes square that contains the piece.</value>
+        /// <value>The square that contains the piece.</value>
         public Square Square { get; internal set; }
+
+        /// <summary>
+        /// Gets the board that contains the piece.
+        /// </summary>
+        /// <value>The board that contains the piece.</value>
+        public Board Board { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Piece"/> class.

@@ -12,7 +12,7 @@ namespace Snake
         private readonly Piece[,] _pieces;
 
         /// <summary>
-        /// Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. 
+        /// Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. Any existing piece on the destination square is removed from the board.
         /// </summary>
         /// <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
         public Piece this[Square square]
@@ -20,11 +20,20 @@ namespace Snake
             get => this._pieces[square.X, square.Y];
             set
             {
+                Piece oldPiece = this[square];
+
+                if (oldPiece is not null)
+                {
+                    oldPiece.Board = null;
+                }
+
                 if (value is not null)
                 {
-                    Square old = value.Square;
+                    value.Board = this;
 
-                    this._pieces[old.X, old.Y] = null;
+                    Square oldSquare = value.Square;
+
+                    this._pieces[oldSquare.X, oldSquare.Y] = null;
 
                     value.Square = square;
                 }

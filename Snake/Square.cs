@@ -93,7 +93,7 @@ namespace Snake
         /// <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
         public static bool TryCreate(int x, int y, out Square result)
         {
-            if (x >= 0 && x <= Files && y >= 0 && y <= Files)
+            if (x >= 0 && x < Files && y >= 0 && y < Files)
             {
                 result = new Square(x, y);
 
