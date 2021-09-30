@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Snake
 {
@@ -7,12 +8,21 @@ namespace Snake
     /// </summary>
     public class PieceFactory : IPieceFactory
     {
-        private readonly AggregateMoveProvider _rookMoveProvider = new AggregateMoveProvider(
-            new List<IMoveProvider>()
-            {
-                new OrthogonalMoveProvider()
-            },
-            new List<IMoveFilter>());
+        private readonly OrthogonalMoveProvider _orthogonalMoveProvider = new OrthogonalMoveProvider();
+        private readonly AggregateMoveProvider _rookMoveProvider;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PieceFactory"/>.
+        /// </summary>
+        public PieceFactory()
+        {
+            this._rookMoveProvider = new AggregateMoveProvider(
+                new List<IMoveProvider>()
+                {
+                    this._orthogonalMoveProvider
+                },
+                Enumerable.Empty<IMoveFilter>());
+        }
 
         /// <inheritdoc/>
         public Piece CreateRook(Player player)
