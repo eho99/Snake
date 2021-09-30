@@ -13,7 +13,7 @@ namespace Snake
         private readonly LShapeMoveProvider _lShapeMoveProvider = new LShapeMoveProvider();
         private readonly AdvanceOneMoveProvider _advanceOneMoveProvider = new AdvanceOneMoveProvider();
         //private readonly InitialAdvanceTwoMoveProvider _initialAdvanceTwoMoveProvider = new InitialAdvanceTwoMoveProvider();
-        //private readonly DiagonalCaptureMoveProvider _diagonalCaptureMoveProvider = new DiagonalCaptureMoveProvider();
+        private readonly DiagonalCaptureMoveProvider _diagonalCaptureMoveProvider = new DiagonalCaptureMoveProvider();
         //private readonly EnPassantMoveProvider _enPassantMoveProvider = new enPassantMoveProvider();
 
         private readonly AggregateMoveProvider _rookMoveProvider;
@@ -59,8 +59,8 @@ namespace Snake
             this._pawnMoveProvider = new AggregateMoveProvider(
                 new List<IMoveProvider>()
                 {
-                    this._advanceOneMoveProvider
-                    //this._diagonalCaptureMoveProvider,
+                    this._advanceOneMoveProvider,
+                    this._diagonalCaptureMoveProvider
                     //this._initialAdvanceTwoMoveProvider,
                     //this._enPassantMoveProvider
                 },
