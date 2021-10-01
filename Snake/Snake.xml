@@ -122,6 +122,18 @@
             Defines a move.
             </summary>
         </member>
+        <member name="P:Snake.IMove.Destination">
+            <summary>
+            Gets the destination square.
+            </summary>
+            <value>The destination square.</value>
+        </member>
+        <member name="M:Snake.IMove.Execute(Snake.Board)">
+            <summary>
+            Performs the move on the given board.
+            </summary>
+            <param name="board">The board.</param>
+        </member>
         <member name="T:Snake.IMoveFilter">
             <summary>
             Defines a method for filtering collections of moves.

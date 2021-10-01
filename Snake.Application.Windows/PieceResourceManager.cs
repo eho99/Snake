@@ -10,7 +10,10 @@ namespace Snake.Application.Windows
         private readonly Dictionary<char, string> _dictionary = new Dictionary<char, string>()
         {
             { 'K', "King" },
+            { 'Q', "Queen" },
             { 'R', "Rook" },
+            { 'B', "Bishop" },
+            { 'N', "Knight" },
             { 'p', "Pawn" }
         };
 

@@ -10,6 +10,12 @@ namespace Snake
     public interface IMove
     {
         /// <summary>
+        /// Gets the destination square.
+        /// </summary>
+        /// <value>The destination square.</value>
+        Square Destination { get; }
+
+        /// <summary>
         /// Performs the move on the given board.
         /// </summary>
         /// <param name="board">The board.</param>

@@ -40,6 +40,22 @@ namespace Snake
             result.Insert(this._pieceFactory.CreateRook(second), new Square('a', 8));
             result.Insert(this._pieceFactory.CreateRook(second), new Square('h', 8));
 
+            result.Insert(this._pieceFactory.CreateKnight(first), new Square('b', 1));
+            result.Insert(this._pieceFactory.CreateKnight(first), new Square('g', 1));
+
+            result.Insert(this._pieceFactory.CreateKnight(second), new Square('b', 8));
+            result.Insert(this._pieceFactory.CreateKnight(second), new Square('g', 8));
+
+            result.Insert(this._pieceFactory.CreateBishop(first), new Square('c', 1));
+            result.Insert(this._pieceFactory.CreateBishop(first), new Square('f', 1));
+
+            result.Insert(this._pieceFactory.CreateBishop(second), new Square('c', 8));
+            result.Insert(this._pieceFactory.CreateBishop(second), new Square('f', 8));
+
+            result.Insert(this._pieceFactory.CreateQueen(first), new Square('d', 1));
+
+            result.Insert(this._pieceFactory.CreateQueen(second), new Square('d', 8));
+
             return result;
         }
     }

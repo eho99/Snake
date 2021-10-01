@@ -20,22 +20,23 @@ namespace Snake.Application.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            Snake.Board board1 = new Snake.Board();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BoardForm));
-            this.boardPanel = new System.Windows.Forms.Panel();
+            this.boardView1 = new Snake.Application.Windows.BoardView();
             this.SuspendLayout();
             // 
-            // boardPanel
+            // boardView1
             // 
-            resources.ApplyResources(this.boardPanel, "boardPanel");
-            this.boardPanel.Name = "boardPanel";
-            this.boardPanel.Resize += new System.EventHandler(this.OnBoardPanelResize);
+            this.boardView1.Board = board1;
+            resources.ApplyResources(this.boardView1, "boardView1");
+            this.boardView1.Name = "boardView1";
             // 
             // BoardForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.boardPanel);
+            this.Controls.Add(this.boardView1);
             this.ForeColor = System.Drawing.Color.Black;
             this.MaximizeBox = false;
             this.Name = "BoardForm";
@@ -45,6 +46,6 @@ namespace Snake.Application.Windows
 
         #endregion
 
-        private System.Windows.Forms.Panel boardPanel;
+        private BoardView boardView1;
     }
 }
