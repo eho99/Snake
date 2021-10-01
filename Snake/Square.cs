@@ -103,7 +103,7 @@ namespace Snake
             {
                 result = default;
 
-                return true;
+                return false;
             }
         }
 

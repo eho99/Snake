@@ -13,7 +13,11 @@ namespace Snake
         {
             Square source = piece.Square;
 
-            yield return new Move(piece, new Square(source.X, source.Y + (int)piece.Player.Direction));
+            if (Square.TryCreate(source.X, source.Y + (int)piece.Player.Direction, out Square result))
+            {
+                yield return new Move(piece, result);
+            }
+
         }
     }
 }

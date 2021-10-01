@@ -15,7 +15,7 @@ namespace Snake.Application
             Board board = new Board();
             IPieceFactory pieceFactory = new PieceFactory();
             Player white = new Player(Direction.Forward);
-            Piece piece = pieceFactory.CreatePawn(white);
+            Piece piece = pieceFactory.CreateKnight(white);
 
             foreach (Square square in Square.GetValues())
             {
