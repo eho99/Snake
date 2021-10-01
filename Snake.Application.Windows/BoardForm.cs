@@ -3,7 +3,6 @@
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace Snake.Application.Windows

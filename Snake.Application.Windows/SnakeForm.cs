@@ -16,6 +16,7 @@ namespace Snake.Application.Windows
         public override string Text
         {
             get => this._text;
+
             set
             {
                 this._text = value;

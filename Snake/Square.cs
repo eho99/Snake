@@ -41,26 +41,35 @@ namespace Snake
         /// Gets the rank number of the square.
         /// </summary>
         /// <value>The rank number. The default is <c>8</c>.</value>
-        public int Rank => Ranks - this.Y;
+        public int Rank
+        {
+            get => Ranks - this.Y;
+        }
 
         /// <summary>
         /// Gets the file letter of the square.
         /// </summary>
         /// <value>The file letter. The default is <c>'a'</c>.</value>
-        public char File => Alphabet[this.X];
+        public char File
+        {
+            get => Alphabet[this.X];
+        }
 
         /// <summary>
         /// Gets the color of the square.
         /// </summary>
         /// <value>One of the enumeration values that specifies a color.</value>
-        public Color Color => (Color)(((this.X + this.Y) % 2) + 1);
+        public Color Color
+        {
+            get => (Color)(((this.X + this.Y) % 2) + 1);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Square"/> struct.	
         /// </summary>
         /// <param name="file">The file letter.</param>
         /// <param name="rank">The rank number.</param>
-        /// <exception cref="ArgumentException">The value of the <paramref name="file"/> parameter is not <c>'A'</c>, <c>'B'</c>, <c>'C'</c>, <c>'D'</c>, <c>'E'</c>, <c>'F'</c>, <c>'G'</c>, or <c>'H'</c>.</exception>
+        /// <exception cref="ArgumentException">The case-insensitive value of the <paramref name="file"/> parameter is not <c>'a'</c>, <c>'b'</c>, <c>'c'</c>, <c>'d'</c>, <c>'e'</c>, <c>'f'</c>, <c>'g'</c>, or <c>'h'</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The value of the <paramref name="rank"/> parameter is less than <c>1</c> or greater than <c>8</c>.</exception>
         public Square(char file, int rank)
         {
@@ -70,7 +79,7 @@ namespace Snake
 
             if (file < minFile || file > (minFile + Files))
             {
-                throw new ArgumentException(nameof(file));
+                throw new ArgumentException($"'{file}' is not a valid file letter. The case-insensitive value must be 'a', 'b', 'c', 'd', 'e', 'f', 'g', or 'h'.", nameof(file));
             }
             else
             {

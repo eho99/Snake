@@ -23,6 +23,7 @@ namespace Snake.Application.Windows
         public Color Highlight
         {
             get => this._highlight;
+
             set
             {
                 this._highlight = value;

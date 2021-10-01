@@ -1,4 +1,4 @@
-﻿// Project Snake: DiagonalMoveProvider.cs
+﻿// Project Snake: DiagonalCaptureMoveProvider.cs
 // Copyright (c) 2021 Project Snake Contributors,
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 

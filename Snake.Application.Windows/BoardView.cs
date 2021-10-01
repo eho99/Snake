@@ -22,6 +22,7 @@ namespace Snake.Application.Windows
         public Board Board
         {
             get => this._board;
+
             set
             {
                 if (this.Board is not null)
