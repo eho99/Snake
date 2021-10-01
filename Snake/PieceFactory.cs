@@ -4,7 +4,7 @@ using System.Linq;
 namespace Snake
 {
     /// <summary>
-    /// Creates instances of the <see cref="Piece"/> class.
+    /// An <see cref="IPieceFactory"/> that creates instances of the <see cref="Piece"/> class.
     /// </summary>
     public class PieceFactory : IPieceFactory
     {
@@ -23,7 +23,7 @@ namespace Snake
         private readonly AggregateMoveProvider _pawnMoveProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PieceFactory"/>.
+        /// Initializes a new instance of the <see cref="PieceFactory"/> class.
         /// </summary>
         public PieceFactory()
         {

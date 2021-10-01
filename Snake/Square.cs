@@ -13,16 +13,7 @@ namespace Snake
     public readonly struct Square
     {
         private const string Alphabet = "abcdefgh";
-
-        /// <summary>
-        /// Specifies the maximum value for the <see cref="Rank"/> property.
-        /// </summary>
-        public const int MaxRank = Ranks;
-
-        /// <summary>
-        /// Specifies the maximum value for the <see cref="File"/> property.
-        /// </summary>
-        public const char MaxFile = 'h';
+        private const int MinRank = 1;
 
         /// <summary>
         /// Specifies the number of ranks.
@@ -50,7 +41,7 @@ namespace Snake
         /// Gets the rank number of the square.
         /// </summary>
         /// <value>The rank number. The default is <c>1</c>.</value>
-        public int Rank => MaxRank - this.Y;
+        public int Rank => Ranks - this.Y;
 
         /// <summary>
         /// Gets the file letter of the square.
@@ -59,13 +50,49 @@ namespace Snake
         public char File => Alphabet[this.X];
 
         /// <summary>
+        /// Gets the color of the square.
+        /// </summary>
+        /// <value>One of the enumeration values that specifies a color.</value>
+        public Color Color => (Color)((this.X + this.Y) % 2);
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Square"/> struct.	
+        /// </summary>
+        /// <param name="file">The file letter.</param>
+        /// <param name="rank">The rank number.</param>
+        public Square(char file, int rank)
+        {
+            file = Char.ToLower(file);
+
+            char minFile = Alphabet[0];
+
+            if (file < minFile || file > (minFile + Files))
+            {
+                throw new ArgumentOutOfRangeException(nameof(file));
+            }
+            else
+            {
+                this.X = file - minFile;
+            }
+
+            if (rank < MinRank || rank > Ranks)
+            {
+                throw new ArgumentOutOfRangeException(nameof(rank));
+            }
+            else
+            {
+                this.Y = rank - MinRank;
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Square"/> struct.	
         /// </summary>
         /// <param name="x">The zero-based horizontal coordinate.</param>
         /// <param name="y">The zero-based vertical coordinate.</param>
         public Square(int x, int y)
         {
-            if (x < 0 || x > Files)
+            if (x < 0 || x >= Files)
             {
                 throw new ArgumentOutOfRangeException(nameof(x));
             }
@@ -74,7 +101,7 @@ namespace Snake
                 this.X = x;
             }
 
-            if (y < 0 || y > Ranks)
+            if (y < 0 || y >= Ranks)
             {
                 throw new ArgumentOutOfRangeException(nameof(y));
             }
@@ -89,11 +116,11 @@ namespace Snake
         /// </summary>
         /// <param name="x">The zero-based horizontal coordinate.</param>
         /// <param name="y">The zero-based vertical coordinate.</param>
-        /// <param name="result">When this method returns, contains the square value equivalent of the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="Ranks"/>. This parameter is treated as uninitialized.</param>
+        /// <param name="result">When this method returns, contains the square equivalent to the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="Ranks"/>. This parameter is treated as uninitialized.</param>
         /// <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
         public static bool TryCreate(int x, int y, out Square result)
         {
-            if (x >= 0 && x < Files && y >= 0 && y < Files)
+            if (x >= 0 && x < Files && y >= 0 && y < Ranks)
             {
                 result = new Square(x, y);
 
@@ -103,7 +130,7 @@ namespace Snake
             {
                 result = default;
 
-                return true;
+                return false;
             }
         }
 

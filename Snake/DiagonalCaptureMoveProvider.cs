@@ -14,5 +14,6 @@ namespace Snake
 
             yield return new Move(piece, new Square(source.X + 1, source.Y + (int)piece.Player.Direction));
             yield return new Move(piece, new Square(source.X - 1, source.Y + (int)piece.Player.Direction));
+        }
     }
 }

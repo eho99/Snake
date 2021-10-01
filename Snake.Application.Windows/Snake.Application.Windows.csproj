@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+	  <AssemblyTitle>Snake</AssemblyTitle>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Snake.Application.Windows.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Snake\Snake.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="PieceResourceManager.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

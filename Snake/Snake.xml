@@ -13,11 +13,35 @@
             <summary>
             Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. Any existing piece on the destination square is removed from the board.
             </summary>
+            <param name="square">The square that contains the piece.</param>
             <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
         </member>
         <member name="M:Snake.Board.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Snake.Board"/> class.
+            </summary>
+        </member>
+        <member name="M:Snake.Board.TryGetPiece(Snake.Square,Snake.Piece@)">
+            <summary>
+            Gets the piece on the given square. A return value indicates whether the operation succeeded.
+            </summary>
+            <param name="square">The square that contains the piece.</param>
+            <param name="result">When this method returns, contains the piece on the square, if a piece occupies the square, or <see langword="null"/> if square is empty. This parameter is treated as uninitialized.</param>
+            <returns><see langword="true"/> if a piece occupies the square; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="T:Snake.Color">
+            <summary>
+            Specifies a color.
+            </summary>
+        </member>
+        <member name="F:Snake.Color.Light">
+            <summary>
+            The light, or white, color.
+            </summary>
+        </member>
+        <member name="F:Snake.Color.Dark">
+            <summary>
+            The dark, or black, color.
             </summary>
         </member>
         <member name="T:Snake.Direction">
@@ -188,6 +212,13 @@
             <summary>
             Gets the direction in which the player's pieces advance.
             </summary>
+            <value>One of the enumeration values that specifies a direction of motion. The default is <see cref="F:Snake.Direction.None"/>.</value>
+        </member>
+        <member name="P:Snake.Player.Color">
+            <summary>
+            Gets the color of the player's pieces.
+            </summary>
+            <value>One of the enumeration values that specifies a color. The default is <see cref="F:Snake.Color.Light"/>.</value>
         </member>
         <member name="M:Snake.Player.#ctor(Snake.Direction)">
             <summary>
@@ -244,6 +275,12 @@
             </summary>
             <value>The file letter. The default is <c>A</c>.</value>
         </member>
+        <member name="P:Snake.Square.Color">
+            <summary>
+            Gets the color of the square.
+            </summary>
+            <value>One of the enumeration values that specifies a color.</value>
+        </member>
         <member name="M:Snake.Square.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Snake.Square"/> struct.	
@@ -257,7 +294,7 @@
             </summary>
             <param name="x">The zero-based horizontal coordinate.</param>
             <param name="y">The zero-based vertical coordinate.</param>
-            <param name="result">When this method returns, contains the square value equivalent of the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="T:Snake.Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Ranks"/>. This parameter is treated as uninitialized.</param>
+            <param name="result">When this method returns, contains the square equivalent to the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="T:Snake.Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Ranks"/>. This parameter is treated as uninitialized.</param>
             <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:Snake.Square.GetValues">
