@@ -10,6 +10,11 @@ namespace Snake
     public enum Color
     {
         /// <summary>
+        /// No color.
+        /// </summary>
+        None,
+
+        /// <summary>
         /// The light, or white, color.
         /// </summary>
         Light,

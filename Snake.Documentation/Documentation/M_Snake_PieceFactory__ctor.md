@@ -1,7 +1,7 @@
 # PieceFactory Constructor 
  
 
-Initializes a new instance of the <a href="T_Snake_PieceFactory">PieceFactory</a>.
+Initializes a new instance of the <a href="T_Snake_PieceFactory">PieceFactory</a> class.
 
 **Namespace:**&nbsp;<a href="N_Snake">Snake</a><br />**Assembly:**&nbsp;Snake (in Snake.dll) Version: 1.0.0
 

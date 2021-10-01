@@ -5,7 +5,8 @@ The <a href="T_Snake_Square">Square</a> type exposes the following members.
 
 
 ## Properties
-&nbsp;<table><tr><th></th><th>Name</th><th>Description</th></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_File">File</a></td><td>
+&nbsp;<table><tr><th></th><th>Name</th><th>Description</th></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_Color">Color</a></td><td>
+Gets the color of the square.</td></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_File">File</a></td><td>
 Gets the file letter of the square.</td></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_Rank">Rank</a></td><td>
 Gets the rank number of the square.</td></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_X">X</a></td><td>
 Gets the zero-based horizontal coordinate of the square.</td></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Square_Y">Y</a></td><td>

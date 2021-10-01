@@ -14,26 +14,27 @@ namespace Snake.Application
         {
             Board board = new Board();
             IPieceFactory pieceFactory = new PieceFactory();
-            Player white = new Player(Direction.Forward);
-            Player black = new Player(Direction.Backward);
-            Piece piece = pieceFactory.CreatePawn(white);
-            Piece piece1 = pieceFactory.CreatePawn(black);
+            Player white = new Player(Direction.Forward, Color.Light);
+            Piece piece = pieceFactory.CreateRook(white);
+            Square first = new Square();
 
-            Square square1 = new Square(1, 2);
-            board[square1] = piece1;
+            board.Insert(piece, first);
 
             foreach (Square square in Square.GetValues())
             {
-                board[square] = piece;
+                if (square != first)
+                {
+                    board.Move(piece, square);
 
-                List<IMove> moves = piece.GetMoves().ToList();
+                    List<IMove> moves = piece.GetMoves().ToList();
 
-                Console.Write(piece);
-                Console.Write(" on ");
-                Console.Write(piece.Square);
-                Console.Write(" can perform the following ");
-                Console.Write(moves.Count + " moves: ");
-                Console.WriteLine(String.Join(", ", moves));
+                    Console.Write(piece);
+                    Console.Write(" on ");
+                    Console.Write(piece.Square);
+                    Console.Write(" can perform ");
+                    Console.Write(moves.Count + " moves: ");
+                    Console.WriteLine(String.Join(", ", moves));
+                }
             }
         }
     }

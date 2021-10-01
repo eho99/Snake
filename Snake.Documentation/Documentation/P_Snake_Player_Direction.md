@@ -41,7 +41,7 @@ public Direction get_Direction()
 
 
 #### Property Value
-Type: <a href="T_Snake_Direction">Direction</a>
+Type: <a href="T_Snake_Direction">Direction</a><br />One of the enumeration values that specifies a direction of motion.
 
 ## See Also
 

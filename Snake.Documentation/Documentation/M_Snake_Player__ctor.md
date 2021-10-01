@@ -10,14 +10,16 @@ Initializes a new instance of the <a href="T_Snake_Player">Player</a> class.
 **C#**<br />
 ``` C#
 public Player(
-	Direction direction
+	Direction direction,
+	Color color
 )
 ```
 
 **VB**<br />
 ``` VB
 Public Sub New ( 
-	direction As Direction
+	direction As Direction,
+	color As Color
 )
 ```
 
@@ -25,26 +27,29 @@ Public Sub New (
 ``` C++
 public:
 Player(
-	Direction direction
+	Direction direction, 
+	Color color
 )
 ```
 
 **F#**<br />
 ``` F#
 new : 
-        direction : Direction -> Player
+        direction : Direction * 
+        color : Color -> Player
 ```
 
 **J#**<br />
 ``` J#
 public Player(
-	Direction direction
+	Direction direction,
+	Color color
 )
 ```
 
 
 #### Parameters
-&nbsp;<dl><dt>direction</dt><dd>Type: <a href="T_Snake_Direction">Snake.Direction</a><br />The direction in which the player's pieces advance.</dd></dl>
+&nbsp;<dl><dt>direction</dt><dd>Type: <a href="T_Snake_Direction">Snake.Direction</a><br />The direction in which the player's pieces advance.</dd><dt>color</dt><dd>Type: <a href="T_Snake_Color">Snake.Color</a><br />The color of the player's pieces.</dd></dl>
 
 ## See Also
 

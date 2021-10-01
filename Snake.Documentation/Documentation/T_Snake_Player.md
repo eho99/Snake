@@ -44,7 +44,8 @@ Initializes a new instance of the Player class.</td></tr></table>&nbsp;
 <a href="#player-class">Back to Top</a>
 
 ## Properties
-&nbsp;<table><tr><th></th><th>Name</th><th>Description</th></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Player_Direction">Direction</a></td><td>
+&nbsp;<table><tr><th></th><th>Name</th><th>Description</th></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Player_Color">Color</a></td><td>
+Gets the color of the player's pieces.</td></tr><tr><td>![Public property](media/pubproperty.gif "Public property")</td><td><a href="P_Snake_Player_Direction">Direction</a></td><td>
 Gets the direction in which the player's pieces advance.</td></tr></table>&nbsp;
 <a href="#player-class">Back to Top</a>
 

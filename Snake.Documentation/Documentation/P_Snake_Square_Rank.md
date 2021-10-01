@@ -41,7 +41,7 @@ public int get_Rank()
 
 
 #### Property Value
-Type: <a href="https://docs.microsoft.com/dotnet/api/system.int32" target="_blank" rel="noopener noreferrer">Int32</a><br />The rank number. The default is `1`.
+Type: <a href="https://docs.microsoft.com/dotnet/api/system.int32" target="_blank" rel="noopener noreferrer">Int32</a><br />The rank number. The default is `8`.
 
 ## See Also
 

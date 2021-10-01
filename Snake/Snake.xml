@@ -11,10 +11,15 @@
         </member>
         <member name="P:Snake.Board.Item(Snake.Square)">
             <summary>
-            Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. Any existing piece on the destination square is removed from the board.
+            Gets the piece on the given square.
             </summary>
             <param name="square">The square that contains the piece.</param>
             <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
+        </member>
+        <member name="E:Snake.Board.Updated">
+            <summary>
+            Occurs when the board is updated.
+            </summary>
         </member>
         <member name="M:Snake.Board.#ctor">
             <summary>
@@ -28,6 +33,28 @@
             <param name="square">The square that contains the piece.</param>
             <param name="result">When this method returns, contains the piece on the square, if a piece occupies the square, or <see langword="null"/> if square is empty. This parameter is treated as uninitialized.</param>
             <returns><see langword="true"/> if a piece occupies the square; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Snake.Board.Insert(Snake.Piece,Snake.Square)">
+            <summary>
+            Places a piece on an empty destination square.
+            </summary>
+            <param name="piece"></param>
+            <param name="square"></param>
+        </member>
+        <member name="M:Snake.Board.Move(Snake.Piece,Snake.Square)">
+            <summary>
+            Moves a given piece from its current square onto an empty destination square.
+            </summary>
+            <param name="piece">The piece.</param>
+            <param name="square">The destination square.</param>
+            <exception cref="T:System.InvalidOperationException">The given <paramref name="square"/> is not empty.</exception>
+            <exception cref="T:System.ArgumentNullException">The given <paramref name="piece"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Snake.Board.OnUpdated(Snake.SquareEventArgs)">
+            <summary>
+            Raises the <see cref="E:Snake.Board.Updated"/> event.
+            </summary>
+            <param name="e">The event data.</param>
         </member>
         <member name="T:Snake.BoardFactory">
             <summary>
@@ -45,6 +72,11 @@
         <member name="T:Snake.Color">
             <summary>
             Specifies a color.
+            </summary>
+        </member>
+        <member name="F:Snake.Color.None">
+            <summary>
+            No color.
             </summary>
         </member>
         <member name="F:Snake.Color.Light">
@@ -94,6 +126,18 @@
             <summary>
             Defines a move.
             </summary>
+        </member>
+        <member name="P:Snake.IMove.Destination">
+            <summary>
+            Gets the destination square.
+            </summary>
+            <value>The destination square.</value>
+        </member>
+        <member name="M:Snake.IMove.Execute(Snake.Board)">
+            <summary>
+            Performs the move on the given board.
+            </summary>
+            <param name="board">The board.</param>
         </member>
         <member name="T:Snake.IMoveFilter">
             <summary>
@@ -238,19 +282,20 @@
             <summary>
             Gets the direction in which the player's pieces advance.
             </summary>
-            <value>One of the enumeration values that specifies a direction of motion. The default is <see cref="F:Snake.Direction.None"/>.</value>
+            <value>One of the enumeration values that specifies a direction of motion.</value>
         </member>
         <member name="P:Snake.Player.Color">
             <summary>
             Gets the color of the player's pieces.
             </summary>
-            <value>One of the enumeration values that specifies a color. The default is <see cref="F:Snake.Color.Light"/>.</value>
+            <value>One of the enumeration values that specifies a color.</value>
         </member>
-        <member name="M:Snake.Player.#ctor(Snake.Direction)">
+        <member name="M:Snake.Player.#ctor(Snake.Direction,Snake.Color)">
             <summary>
             Initializes a new instance of the <see cref="T:Snake.Player"/> class.
             </summary>
             <param name="direction">The direction in which the player's pieces advance.</param>
+            <param name="color">The color of the player's pieces.</param>
         </member>
         <member name="T:Snake.Square">
             <summary>
@@ -283,13 +328,13 @@
             <summary>
             Gets the rank number of the square.
             </summary>
-            <value>The rank number. The default is <c>1</c>.</value>
+            <value>The rank number. The default is <c>8</c>.</value>
         </member>
         <member name="P:Snake.Square.File">
             <summary>
             Gets the file letter of the square.
             </summary>
-            <value>The file letter. The default is <c>A</c>.</value>
+            <value>The file letter. The default is <c>'a'</c>.</value>
         </member>
         <member name="P:Snake.Square.Color">
             <summary>
@@ -303,6 +348,8 @@
             </summary>
             <param name="file">The file letter.</param>
             <param name="rank">The rank number.</param>
+            <exception cref="T:System.ArgumentException">The value of the <paramref name="file"/> parameter is not <c>'A'</c>, <c>'B'</c>, <c>'C'</c>, <c>'D'</c>, <c>'E'</c>, <c>'F'</c>, <c>'G'</c>, or <c>'H'</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value of the <paramref name="rank"/> parameter is less than <c>1</c> or greater than <c>8</c>.</exception>
         </member>
         <member name="M:Snake.Square.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -310,6 +357,7 @@
             </summary>
             <param name="x">The zero-based horizontal coordinate.</param>
             <param name="y">The zero-based vertical coordinate.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">The value of the <paramref name="x"/> or <paramref name="y"/> parameter is less than <c>0</c> or greater than <c>7</c>.</exception>
         </member>
         <member name="M:Snake.Square.TryCreate(System.Int32,System.Int32,Snake.Square@)">
             <summary>
@@ -328,6 +376,48 @@
         </member>
         <member name="M:Snake.Square.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Snake.Square.Equals(Snake.Square)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Snake.Square.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Snake.Square.op_Equality(Snake.Square,Snake.Square)">
+            <summary>
+            Determines whether two specified instances of <see cref="T:Snake.Square"/> are equal.
+            </summary>
+            <param name="left">The first object to compare.</param>
+            <param name="right">The second object to compare.</param>
+            <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> represent the same square; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Snake.Square.op_Inequality(Snake.Square,Snake.Square)">
+            <summary>
+            Determines whether two specified instances of <see cref="T:Snake.Square"/> are not equal.
+            </summary>
+            <param name="left">The first object to compare.</param>
+            <param name="right">The second object to compare.</param>
+            <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> do not represent the same square; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Snake.Square.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Snake.SquareEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Snake.Board.Updated"/> event.	
+            </summary>
+        </member>
+        <member name="P:Snake.SquareEventArgs.Value">
+            <summary>
+            Gets the square.
+            </summary>
+            <value>The square.</value>
+        </member>
+        <member name="M:Snake.SquareEventArgs.#ctor(Snake.Square)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Snake.SquareEventArgs"/> class.
+            </summary>
+            <param name="value">The square.</param>
         </member>
     </members>
 </doc>

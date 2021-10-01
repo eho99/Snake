@@ -1,7 +1,7 @@
 # PieceFactory Class
  
 
-Creates instances of the <a href="T_Snake_Piece">Piece</a> class.
+An <a href="T_Snake_IPieceFactory">IPieceFactory</a> that creates instances of the <a href="T_Snake_Piece">Piece</a> class.
 
 
 ## Inheritance Hierarchy
@@ -44,7 +44,7 @@ The PieceFactory type exposes the following members.
 
 ## Constructors
 &nbsp;<table><tr><th></th><th>Name</th><th>Description</th></tr><tr><td>![Public method](media/pubmethod.gif "Public method")</td><td><a href="M_Snake_PieceFactory__ctor">PieceFactory</a></td><td>
-Initializes a new instance of the PieceFactory.</td></tr></table>&nbsp;
+Initializes a new instance of the PieceFactory class.</td></tr></table>&nbsp;
 <a href="#piecefactory-class">Back to Top</a>
 
 ## Methods

@@ -1,7 +1,7 @@
 # Board.Item Property 
  
 
-Gets or sets the piece on the given square. When reassiging an existing piece to a new square, the piece is removed from its original square. Any existing piece on the destination square is removed from the board.
+Gets the piece on the given square.
 
 **Namespace:**&nbsp;<a href="N_Snake">Snake</a><br />**Assembly:**&nbsp;Snake (in Snake.dll) Version: 1.0.0
 
@@ -11,16 +11,15 @@ Gets or sets the piece on the given square. When reassiging an existing piece to
 ``` C#
 public Piece this[
 	Square square
-] { get; set; }
+] { get; }
 ```
 
 **VB**<br />
 ``` VB
-Public Default Property Item ( 
+Public ReadOnly Default Property Item ( 
 	square As Square
 ) As Piece
 	Get
-	Set
 ```
 
 **C++**<br />
@@ -28,13 +27,12 @@ Public Default Property Item (
 public:
 property Piece^ default[Square square] {
 	Piece^ get (Square square);
-	void set (Square square, Piece^ value);
 }
 ```
 
 **F#**<br />
 ``` F#
-member Item : Piece with get, set
+member Item : Piece with get
 
 ```
 
@@ -44,14 +42,12 @@ member Item : Piece with get, set
 public Piece get_Item(
 	Square square
 )
-/** @property */
-public void set_Item(Piece value)
 
 ```
 
 
 #### Parameters
-&nbsp;<dl><dt>square</dt><dd>Type: <a href="T_Snake_Square">Snake.Square</a><br /></dd></dl>
+&nbsp;<dl><dt>square</dt><dd>Type: <a href="T_Snake_Square">Snake.Square</a><br />The square that contains the piece.</dd></dl>
 
 #### Property Value
 Type: <a href="T_Snake_Piece">Piece</a><br />The piece on the given square or a null reference (`Nothing` in Visual Basic) if the square is empty.

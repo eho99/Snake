@@ -41,7 +41,7 @@ public char get_File()
 
 
 #### Property Value
-Type: <a href="https://docs.microsoft.com/dotnet/api/system.char" target="_blank" rel="noopener noreferrer">Char</a><br />The file letter. The default is `A`.
+Type: <a href="https://docs.microsoft.com/dotnet/api/system.char" target="_blank" rel="noopener noreferrer">Char</a><br />The file letter. The default is `'a'`.
 
 ## See Also
 
