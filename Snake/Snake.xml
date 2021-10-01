@@ -29,6 +29,19 @@
             <param name="result">When this method returns, contains the piece on the square, if a piece occupies the square, or <see langword="null"/> if square is empty. This parameter is treated as uninitialized.</param>
             <returns><see langword="true"/> if a piece occupies the square; otherwise, <see langword="false"/>.</returns>
         </member>
+        <member name="T:Snake.BoardFactory">
+            <summary>
+            An <see cref="T:Snake.IBoardFactory"/> that creates instances of the <see cref="T:Snake.Board"/> class.
+            </summary>
+        </member>
+        <member name="M:Snake.BoardFactory.#ctor(Snake.IPieceFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Snake.BoardFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:Snake.BoardFactory.Create(Snake.Player,Snake.Player)">
+            <inheritdoc/>
+        </member>
         <member name="T:Snake.Color">
             <summary>
             Specifies a color.
@@ -63,6 +76,19 @@
             <summary>
             The front-to-back direction, beginning from the eighth rank and advancing toward the first rank.
             </summary>
+        </member>
+        <member name="T:Snake.IBoardFactory">
+            <summary>
+            Defines a method for creating instances of the <see cref="T:Snake.Board"/> class.
+            </summary>
+        </member>
+        <member name="M:Snake.IBoardFactory.Create(Snake.Player,Snake.Player)">
+            <summary>
+            Creates a new instance of the <see cref="T:Snake.Board"/> class.
+            </summary>
+            <param name="first">The first player.</param>
+            <param name="second">The second player.</param>
+            <returns>The new board.</returns>
         </member>
         <member name="T:Snake.IMove">
             <summary>
@@ -180,12 +206,12 @@
         </member>
         <member name="T:Snake.PieceFactory">
             <summary>
-            Creates instances of the <see cref="T:Snake.Piece"/> class.
+            An <see cref="T:Snake.IPieceFactory"/> that creates instances of the <see cref="T:Snake.Piece"/> class.
             </summary>
         </member>
         <member name="M:Snake.PieceFactory.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Snake.PieceFactory"/>.
+            Initializes a new instance of the <see cref="T:Snake.PieceFactory"/> class.
             </summary>
         </member>
         <member name="M:Snake.PieceFactory.CreateRook(Snake.Player)">
@@ -231,16 +257,6 @@
             Represents a square on a board.
             </summary>
         </member>
-        <member name="F:Snake.Square.MaxRank">
-            <summary>
-            Specifies the maximum value for the <see cref="P:Snake.Square.Rank"/> property.
-            </summary>
-        </member>
-        <member name="F:Snake.Square.MaxFile">
-            <summary>
-            Specifies the maximum value for the <see cref="P:Snake.Square.File"/> property.
-            </summary>
-        </member>
         <member name="F:Snake.Square.Ranks">
             <summary>
             Specifies the number of ranks.
@@ -280,6 +296,13 @@
             Gets the color of the square.
             </summary>
             <value>One of the enumeration values that specifies a color.</value>
+        </member>
+        <member name="M:Snake.Square.#ctor(System.Char,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Snake.Square"/> struct.	
+            </summary>
+            <param name="file">The file letter.</param>
+            <param name="rank">The rank number.</param>
         </member>
         <member name="M:Snake.Square.#ctor(System.Int32,System.Int32)">
             <summary>
