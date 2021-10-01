@@ -88,6 +88,8 @@ namespace Snake
                         Square oldSquare = piece.Square;
 
                         this._pieces[oldSquare.X, oldSquare.Y] = null;
+
+                        this.OnUpdated(new SquareEventArgs(oldSquare));
                     }
 
                     piece.Square = square;

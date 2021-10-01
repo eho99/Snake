@@ -16,18 +16,18 @@ namespace Snake.Application.Windows
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Square Value { get; }
 
-        private bool _highlighted;
+        private Color _highlight;
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Highlighted
+        public Color Highlight
         {
-            get => this._highlighted;
+            get => this._highlight;
             set
             {
-                this._highlighted = value;
+                this._highlight = value;
 
-                this.BackColor = this.GetBackColor();
+                this.BackColor = this.GetTransparentBackColor();
             }
         }
 
@@ -41,7 +41,7 @@ namespace Snake.Application.Windows
             supportInitialize.BeginInit();
 
             this.AllowDrop = true;
-            this.BackColor = this.GetBackColor();
+            this.BackColor = this.GetTransparentBackColor();
             this.SizeMode = PictureBoxSizeMode.StretchImage;
 
             supportInitialize.EndInit();
@@ -76,31 +76,39 @@ namespace Snake.Application.Windows
             }
         }
 
-        private System.Drawing.Color GetBackColor()
+        private System.Drawing.Color GetTransparentBackColor()
         {
-            System.Drawing.Color result;
-
-            switch (this.Value.Color)
+            System.Drawing.Color getBackColor()
             {
-                case Color.Light:
-                    result = System.Drawing.Color.Khaki;
-                    break;
+                switch (this._highlight)
+                {
+                    case Color.Light:
+                        switch (this.Value.Color)
+                        {
+                            case Color.Light: return System.Drawing.Color.Goldenrod;
+                            case Color.Dark: return System.Drawing.Color.DarkGoldenrod;
+                            default: return System.Drawing.Color.White;
+                        }
 
-                case Color.Dark:
-                    result = System.Drawing.Color.DarkKhaki;
-                    break;
+                    case Color.Dark:
+                        switch (this.Value.Color)
+                        {
+                            case Color.Light: return System.Drawing.Color.Green;
+                            case Color.Dark: return System.Drawing.Color.DarkGreen;
+                            default: return System.Drawing.Color.Black;
+                        }
 
-                default: 
-                    result = System.Drawing.Color.White;
-                    break;
+                    default:
+                        switch (this.Value.Color)
+                        {
+                            case Color.Light: return System.Drawing.Color.Khaki;
+                            case Color.Dark: return System.Drawing.Color.DarkKhaki;
+                            default: return System.Drawing.Color.Transparent;
+                        }
+                }
             }
 
-            if (!this._highlighted)
-            {
-                result = System.Drawing.Color.FromArgb(128, result);
-            }
-
-            return result;
+            return System.Drawing.Color.FromArgb(192, getBackColor());
         }
 
         protected override void OnGiveFeedback(GiveFeedbackEventArgs gfbevent)

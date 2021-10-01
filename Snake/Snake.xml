@@ -74,6 +74,11 @@
             Specifies a color.
             </summary>
         </member>
+        <member name="F:Snake.Color.None">
+            <summary>
+            No color.
+            </summary>
+        </member>
         <member name="F:Snake.Color.Light">
             <summary>
             The light, or white, color.

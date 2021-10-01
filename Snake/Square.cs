@@ -53,7 +53,7 @@ namespace Snake
         /// Gets the color of the square.
         /// </summary>
         /// <value>One of the enumeration values that specifies a color.</value>
-        public Color Color => (Color)((this.X + this.Y) % 2);
+        public Color Color => (Color)(((this.X + this.Y) % 2) + 1);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Square"/> struct.	
