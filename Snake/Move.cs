@@ -15,6 +15,11 @@ namespace Snake
             this.Destination = destination;
         }
 
+        public void Execute(Board board)
+        {
+            board.Move(this.Piece, this.Destination);
+        }
+
         public override string ToString()
         {
             return this.Piece.ToString() + this.Destination.ToString();

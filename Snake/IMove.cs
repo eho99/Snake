@@ -9,5 +9,10 @@ namespace Snake
     /// </summary>
     public interface IMove
     {
+        /// <summary>
+        /// Performs the move on the given board.
+        /// </summary>
+        /// <param name="board">The board.</param>
+        void Execute(Board board);
     }
 }

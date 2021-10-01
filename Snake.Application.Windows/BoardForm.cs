@@ -3,6 +3,7 @@
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -19,7 +20,10 @@ namespace Snake.Application.Windows
         {
             this.InitializeComponent();
 
-            this._board = this._boardFactory.Create(new Player(Direction.Forward), new Player(Direction.Backward));
+            this._board = this._boardFactory.Create(new Player(Direction.Forward, Color.Light), new Player(Direction.Backward, Color.Dark));
+            Dictionary<Square, PictureBox> squares = new Dictionary<Square, PictureBox>();
+
+            this._board.Updated += (sender, e) => this.UpdateSquare(squares[e.Value]);
 
             foreach (Square square in Square.GetValues())
             {
@@ -29,22 +33,34 @@ namespace Snake.Application.Windows
                 supportInitialize.BeginInit();
 
                 pictureBox.AllowDrop = true;
+                //pictureBox.Click += (sender, e) => this._selection = (Square)pictureBox.Tag;
+                pictureBox.GiveFeedback += (sender, e) =>
+                {
+                    e.UseDefaultCursors = false;
+                    Cursor.Current = Cursors.Hand;
+                };
+                //pictureBox.DragEnter += (sender, e) =>
+                //{
+                //    this._originalIimage = pictureBox.Image;
+                //    pictureBox.Image = this._newImage;
+                //    e.Effect = DragDropEffects.Move;
+                //};
+                //pictureBox.DragLeave += (sender, e) => pictureBox.Image = this._originalIimage;
+                //pictureBox.DragDrop += (sender, e) => this._destination = (Square)pictureBox.Tag;
                 pictureBox.BackColor = GetSquareColor(square);
-                pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Tag = square;
 
                 this.ResizeSquare(pictureBox);
+                this.UpdateSquare(pictureBox);
 
                 supportInitialize.EndInit();
 
                 this.boardPanel.Controls.Add(pictureBox);
-
-                //this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.Squar_GiveFeedback);
-                //this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Squar_DragEnter);
-                //this.DragLeave += new System.EventHandler(this.Squar_DragLeave);
-                //this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Squar_DragDrop);
-                //this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Squar_MouseDown);
+                squares.Add(square, pictureBox);
             }
+
+            this.UpdateSquare(squares[new Square(0, 0)]);
         }
 
         private static System.Drawing.Color GetSquareColor(Square value)
@@ -57,16 +73,35 @@ namespace Snake.Application.Windows
             }
         }
 
+        private void UpdateSquare(PictureBox value)
+        {
+            Square tag = (Square)value.Tag;
+
+            if (value.Image is not null)
+            {
+                value.Image.Dispose();
+            }
+
+            if (this._board.TryGetPiece(tag, out Piece result))
+            {
+                value.Image = this._pieceResourceManager.GetImage(result.Player.Color, result.Symbol);
+            }
+            else
+            {
+                value.Image = null;
+            }
+        }
+
         private void ResizeSquare(Control control)
         {
-            int width = this.boardPanel.Width / Square.Files;
-            int height = this.boardPanel.Height / Square.Ranks;
+            int squareWidth = this.boardPanel.Width / Square.Files;
+            int squareHeight = this.boardPanel.Height / Square.Ranks;
 
-            control.Size = new Size(width, height);
+            control.Size = new Size(squareWidth, squareHeight);
 
             Square tag = (Square)control.Tag;
 
-            control.Location = new Point(tag.X * width, tag.Y * height);
+            control.Location = new Point(tag.X * squareWidth, (Square.Ranks - tag.Y - 1) * squareHeight);
         }
 
         private void OnBoardPanelResize(object sender, EventArgs e)

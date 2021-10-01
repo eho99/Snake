@@ -24,21 +24,21 @@ namespace Snake
         {
             Board result = new Board();
 
-            for (char file = 'a'; file < 'h'; file++)
+            for (char file = 'a'; file <= 'h'; file++)
             {
-                result[new Square(file, 2)] = this._pieceFactory.CreatePawn(first);
+                result.Insert(this._pieceFactory.CreatePawn(first), new Square(file, 2));
             }
 
-            for (char file = 'a'; file < 'h'; file++)
+            for (char file = 'a'; file <= 'h'; file++)
             {
-                result[new Square(file, 7)] = this._pieceFactory.CreatePawn(second);
+                result.Insert(this._pieceFactory.CreatePawn(second), new Square(file, 7));
             }
 
-            result[new Square('a', 1)] = this._pieceFactory.CreateRook(first);
-            result[new Square('h', 1)] = this._pieceFactory.CreateRook(first);
+            result.Insert(this._pieceFactory.CreateRook(first), new Square('a', 1));
+            result.Insert(this._pieceFactory.CreateRook(first), new Square('h', 1));
 
-            result[new Square('a', 8)] = this._pieceFactory.CreateRook(second);
-            result[new Square('h', 8)] = this._pieceFactory.CreateRook(second);
+            result.Insert(this._pieceFactory.CreateRook(second), new Square('a', 8));
+            result.Insert(this._pieceFactory.CreateRook(second), new Square('h', 8));
 
             return result;
         }

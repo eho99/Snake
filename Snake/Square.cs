@@ -10,7 +10,7 @@ namespace Snake
     /// <summary>
     /// Represents a square on a board.
     /// </summary>
-    public readonly struct Square
+    public readonly struct Square : IEquatable<Square>
     {
         private const string Alphabet = "abcdefgh";
         private const int MinRank = 1;
@@ -40,13 +40,13 @@ namespace Snake
         /// <summary>
         /// Gets the rank number of the square.
         /// </summary>
-        /// <value>The rank number. The default is <c>1</c>.</value>
+        /// <value>The rank number. The default is <c>8</c>.</value>
         public int Rank => Ranks - this.Y;
 
         /// <summary>
         /// Gets the file letter of the square.
         /// </summary>
-        /// <value>The file letter. The default is <c>A</c>.</value>
+        /// <value>The file letter. The default is <c>'a'</c>.</value>
         public char File => Alphabet[this.X];
 
         /// <summary>
@@ -60,6 +60,8 @@ namespace Snake
         /// </summary>
         /// <param name="file">The file letter.</param>
         /// <param name="rank">The rank number.</param>
+        /// <exception cref="ArgumentException">The value of the <paramref name="file"/> parameter is not <c>'A'</c>, <c>'B'</c>, <c>'C'</c>, <c>'D'</c>, <c>'E'</c>, <c>'F'</c>, <c>'G'</c>, or <c>'H'</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The value of the <paramref name="rank"/> parameter is less than <c>1</c> or greater than <c>8</c>.</exception>
         public Square(char file, int rank)
         {
             file = Char.ToLower(file);
@@ -68,7 +70,7 @@ namespace Snake
 
             if (file < minFile || file > (minFile + Files))
             {
-                throw new ArgumentOutOfRangeException(nameof(file));
+                throw new ArgumentException(nameof(file));
             }
             else
             {
@@ -90,6 +92,7 @@ namespace Snake
         /// </summary>
         /// <param name="x">The zero-based horizontal coordinate.</param>
         /// <param name="y">The zero-based vertical coordinate.</param>
+        /// <exception cref="ArgumentOutOfRangeException">The value of the <paramref name="x"/> or <paramref name="y"/> parameter is less than <c>0</c> or greater than <c>7</c>.</exception>
         public Square(int x, int y)
         {
             if (x < 0 || x >= Files)
@@ -140,9 +143,9 @@ namespace Snake
         /// <returns>A collection of new <see cref="Square"/> instances.</returns>
         public static IEnumerable<Square> GetValues()
         {
-            for (int x = 0; x < Files; x++)
+            for (int y = 0; y < Ranks; y++)
             {
-                for (int y = 0; y < Ranks; y++)
+                for (int x = 0; x < Files; x++)
                 {
                     yield return new Square(x, y);
                 }
@@ -153,6 +156,51 @@ namespace Snake
         public override string ToString()
         {
             return this.File.ToString() + this.Rank;
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(Square other)
+        {
+            return this.X == other.X && this.Y == other.Y;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return obj is Square square && this.Equals(square);
+        }
+
+        /// <summary>
+        /// Determines whether two specified instances of <see cref="Square"/> are equal.
+        /// </summary>
+        /// <param name="left">The first object to compare.</param>
+        /// <param name="right">The second object to compare.</param>
+        /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> represent the same square; otherwise, <see langword="false"/>.</returns>
+        public static bool operator ==(Square left, Square right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Determines whether two specified instances of <see cref="Square"/> are not equal.
+        /// </summary>
+        /// <param name="left">The first object to compare.</param>
+        /// <param name="right">The second object to compare.</param>
+        /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> do not represent the same square; otherwise, <see langword="false"/>.</returns>
+        public static bool operator !=(Square left, Square right)
+        {
+            return !(left == right);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            HashCode result = new HashCode();
+
+            result.Add(this.X);
+            result.Add(this.Y);
+
+            return result.ToHashCode();
         }
     }
 }

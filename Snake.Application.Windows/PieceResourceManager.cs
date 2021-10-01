@@ -9,7 +9,9 @@ namespace Snake.Application.Windows
         private readonly ResourceManager _resourceManager = new ResourceManager(typeof(PieceResourceManager));
         private readonly Dictionary<char, string> _dictionary = new Dictionary<char, string>()
         {
-            { 'K', "King" }
+            { 'K', "King" },
+            { 'R', "Rook" },
+            { 'p', "Pawn" }
         };
 
         public Image GetImage(Color color, char symbol)
