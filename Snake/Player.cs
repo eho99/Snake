@@ -12,7 +12,14 @@ namespace Snake
         /// <summary>
         /// Gets the direction in which the player's pieces advance.
         /// </summary>
+        /// <value>One of the enumeration values that specifies a direction of motion. The default is <see cref="Direction.None"/>.</value>
         public Direction Direction { get; }
+
+        /// <summary>
+        /// Gets the color of the player's pieces.
+        /// </summary>
+        /// <value>One of the enumeration values that specifies a color. The default is <see cref="Color.Light"/>.</value>
+        public Color Color { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
