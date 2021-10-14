@@ -2,67 +2,68 @@
 // Copyright (c) 2021 Project Snake Contributors,
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 
-using System.Collections.Generic;
+using System;
 
 namespace Snake
 {
-    /// <summary>
-    /// Represents a playing piece.
-    /// </summary>
-    public class Piece
+    internal readonly partial struct Piece : IEquatable<Piece>, IFormattable
     {
-        private readonly IMoveProvider _moveProvider;
+        public int Index { get; }
 
-        /// <summary>
-        /// Gets the player that owns the piece.
-        /// </summary>
-        /// <value>The player that owns the piece.</value>
-        public Player Player { get; }
-
-        /// <summary>
-        /// Gets the symbol for the piece in algebraic notation.
-        /// </summary>
-        /// <value>The symbol for the piece.</value>
-        public char Symbol { get; }
-
-        /// <summary>
-        /// Gets the square that contains the piece.
-        /// </summary>
-        /// <value>The square that contains the piece.</value>
-        public Square Square { get; internal set; }
-
-        /// <summary>
-        /// Gets the board that contains the piece.
-        /// </summary>
-        /// <value>The board that contains the piece.</value>
-        public Board Board { get; internal set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Piece"/> class.
-        /// </summary>
-        /// <param name="player">The player that owns the piece.</param>
-        /// <param name="symbol">The symbol for the piece in algebraic notation.</param>
-        /// <param name="moveProvider">The move provider that defines the piece's abilities and range of movement.</param>
-        public Piece(Player player, char symbol, IMoveProvider moveProvider)
+        public Player Owner
         {
-            this.Player = player;
-            this.Symbol = symbol;
-            this._moveProvider = moveProvider;
+            get
+            {
+                return new Player(this.Index >> 3 == 0);
+            }
         }
 
-        /// <summary>
-        /// Gets a collection of legal moves for the piece.
-        /// </summary>
-        /// <returns>A collection of legal moves.</returns>
-        public IEnumerable<IMove> GetMoves()
+        public PieceType Type
         {
-            return this._moveProvider.GetMoves(this);
+            get
+            {
+                return new PieceType(this.Index & 7);
+            }
         }
 
-        /// <inheritdoc/>
+        public Piece(Player owner, PieceType type)
+        {
+            this.Index = type.Index | (owner.Index << 3);
+        }
+
+        public bool Equals(Piece other)
+        {
+            return this.Index == other.Index;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Piece other && this.Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Index.GetHashCode();
+        }
+
+        public static bool operator ==(Piece left, Piece right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Piece left, Piece right)
+        {
+            return !(left == right);
+        }
+
         public override string ToString()
         {
-            return this.Symbol.ToString();
+            return this.ToString(format: null, formatProvider: null);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return String.Format(formatProvider, "{0} {1}", this.Owner, this.Type);
         }
     }
 }

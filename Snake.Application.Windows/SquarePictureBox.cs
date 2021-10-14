@@ -2,6 +2,7 @@
 // Copyright (c) 2021 Project Snake Contributors,
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -10,8 +11,6 @@ namespace Snake.Application.Windows
 {
     internal class SquarePictureBox : PictureBox
     {
-        private readonly PieceResourceManager _pieceResourceManager;
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Square Value { get; }
@@ -32,10 +31,9 @@ namespace Snake.Application.Windows
             }
         }
 
-        public SquarePictureBox(Square value, PieceResourceManager pieceResourceManager)
+        public SquarePictureBox(Square value)
         {
             this.Value = value;
-            this._pieceResourceManager = pieceResourceManager;
 
             ISupportInitialize supportInitialize = this;
 
@@ -44,6 +42,7 @@ namespace Snake.Application.Windows
             this.AllowDrop = true;
             this.BackColor = this.GetTransparentBackColor();
             this.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.Cursor = Cursors.Hand;
 
             supportInitialize.EndInit();
         }
@@ -60,16 +59,11 @@ namespace Snake.Application.Windows
             this.Location = new Point(square.X * squareWidth, (Square.Ranks - square.Y - 1) * squareHeight);
         }
 
-        public void Update(Board board)
+        public void Update(Board board, PieceResourceManager pieceResourceManager)
         {
-            if (this.Image is not null)
-            {
-                this.Image.Dispose();
-            }
-
             if (board.TryGetPiece(this.Value, out Piece result))
             {
-                this.Image = this._pieceResourceManager.GetImage(result.Player.Color, result.Symbol);
+                this.Image = pieceResourceManager.GetImage(result);
             }
             else
             {
@@ -110,26 +104,6 @@ namespace Snake.Application.Windows
             }
 
             return System.Drawing.Color.FromArgb(192, getBackColor());
-        }
-
-        protected override void OnGiveFeedback(GiveFeedbackEventArgs gfbevent)
-        {
-            gfbevent.UseDefaultCursors = false;
-
-            Cursor.Current = Cursors.Hand;
-
-            base.OnGiveFeedback(gfbevent);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && this.Image is not null)
-            {
-                this.Image.Dispose();
-                this.Image = null;
-            }
-
-            base.Dispose(disposing);
         }
     }
 }

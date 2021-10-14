@@ -6,115 +6,55 @@ using System;
 
 namespace Snake
 {
-    /// <summary>
-    /// Represents a rectangular board.
-    /// </summary>
-    public class Board
+    internal class Board
     {
-        private readonly Piece[,] _pieces;
+        //private const int Sixteen = 16;
+
+        //private readonly int[] _pieceCounts = new int[Sixteen];
+        private readonly int[] _indices = new int[Square.Count];
+        private readonly Piece[] _pieces = new Piece[Square.Count];
+        //private readonly Square[,] _squares = new Square[Square.Count, Sixteen];
 
         /// <summary>
-        /// Gets the piece on the given square.
+        /// An array of bitboards that represents the positions of each piece by its type, indexed by the <see cref="PieceType.Index"/> property. The bitboard at the index given by the <see cref="PieceType.AllIndex"/> field contains the positions of all pieces.
         /// </summary>
-        /// <param name="square">The square that contains the piece.</param>
-        /// <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
+        private readonly Bitboard[] _pieceBitboards = new Bitboard[PieceType.Count];
+
+        /// <summary>
+        /// An array of biboards that represents the positons of each piece by its owner, indexed by the <see cref="Player.Index"/> property.
+        /// </summary>
+        private readonly Bitboard[] _playerBitboards = new Bitboard[Player.Count];
+
         public Piece this[Square square]
         {
-            get => this._pieces[square.X, square.Y];
-        }
-
-        /// <summary>
-        /// Occurs when the board is updated.
-        /// </summary>
-        public event EventHandler<SquareEventArgs> Updated;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Board"/> class.
-        /// </summary>
-        public Board()
-        {
-            this._pieces = new Piece[Square.Files, Square.Ranks];
-        }
-
-        /// <summary>
-        /// Gets the piece on the given square. A return value indicates whether the operation succeeded.
-        /// </summary>
-        /// <param name="square">The square that contains the piece.</param>
-        /// <param name="result">When this method returns, contains the piece on the square, if a piece occupies the square, or <see langword="null"/> if square is empty. This parameter is treated as uninitialized.</param>
-        /// <returns><see langword="true"/> if a piece occupies the square; otherwise, <see langword="false"/>.</returns>
-        public bool TryGetPiece(Square square, out Piece result)
-        {
-            result = this[square];
-
-            return result is not null;
-        }
-
-        /// <summary>
-        /// Places a piece on an empty destination square.
-        /// </summary>
-        /// <param name="piece"></param>
-        /// <param name="square"></param>
-        public void Insert(Piece piece, Square square)
-        {
-            this.Move(piece, square, move: false);
-        }
-
-        /// <summary>
-        /// Moves a given piece from its current square onto an empty destination square.
-        /// </summary>
-        /// <param name="piece">The piece.</param>
-        /// <param name="square">The destination square.</param>
-        /// <exception cref="InvalidOperationException">The given <paramref name="square"/> is not empty.</exception>
-        /// <exception cref="ArgumentNullException">The given <paramref name="piece"/> is <see langword="null"/>.</exception>
-        public void Move(Piece piece, Square square)
-        {
-            this.Move(piece, square, move: true);
-        }
-
-        private void Move(Piece piece, Square square, bool move)
-        {
-            if (this[square] is null)
+            get
             {
-                if (piece is null)
-                {
-                    throw new ArgumentNullException(nameof(piece));
-                }
-                else
-                {
-                    piece.Board = this;
-
-                    if (move)
-                    {
-                        Square oldSquare = piece.Square;
-
-                        this._pieces[oldSquare.X, oldSquare.Y] = null;
-
-                        this.OnUpdated(new SquareEventArgs(oldSquare));
-                    }
-
-                    piece.Square = square;
-
-                    this._pieces[square.X, square.Y] = piece;
-
-                    this.OnUpdated(new SquareEventArgs(square));
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException();
+                return this._pieces[square.Index];
             }
         }
 
-        /// <summary>
-        /// Raises the <see cref="Updated"/> event.
-        /// </summary>
-        /// <param name="e">The event data.</param>
-        protected virtual void OnUpdated(SquareEventArgs e)
+        public void Clear()
         {
-            if (this.Updated is not null)
-            {
-                this.Updated.Invoke(sender: this, e);
-            }
+            //Array.Clear(this._pieceCounts, index: 0, this._pieceCounts.Length);
+            Array.Clear(this._indices, index: 0, this._indices.Length);
+            Array.Clear(this._pieces, index: 0, this._pieces.Length);
+            //Array.Clear(this._squares, index: 0, this._squares.Length);
+            Array.Clear(this._playerBitboards, index: 0, this._playerBitboards.Length);
+            Array.Clear(this._pieceBitboards, index: 0, this._pieceBitboards.Length);
+        }
+
+        public void Insert(Square square, Piece piece)
+        {
+            this._pieces[square.Index] = piece;
+
+            this._pieceBitboards[PieceType.AllIndex] |= square;
+            this._pieceBitboards[piece.Type.Index] |= square;
+
+            this._playerBitboards[piece.Owner.Index] |= square;
+
+            //_index[sq.AsInt()] = _pieceCount[pc.AsInt()]++;
+            //_pieceList[pc.AsInt()][_index[sq.AsInt()]] = sq;
+            //_pieceCount[PieceTypes.AllPieces.MakePiece(pc.ColorOf()).AsInt()]++;
         }
     }
 }

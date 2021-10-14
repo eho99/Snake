@@ -2,34 +2,67 @@
 // Copyright (c) 2021 Project Snake Contributors,
 // Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
 
+using System;
+using System.Resources;
+
 namespace Snake
 {
-    /// <summary>
-    /// Represents a player.
-    /// </summary>
-    public class Player
+    internal readonly struct Player : IEquatable<Player>
     {
-        /// <summary>
-        /// Gets the direction in which the player's pieces advance.
-        /// </summary>
-        /// <value>One of the enumeration values that specifies a direction of motion.</value>
-        public Direction Direction { get; }
+        public const int Count = 2;
 
-        /// <summary>
-        /// Gets the color of the player's pieces.
-        /// </summary>
-        /// <value>One of the enumeration values that specifies a color.</value>
-        public Color Color { get; }
+        private static readonly ResourceManager resourceManager = new ResourceManager(typeof(Player));
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Player"/> class.
-        /// </summary>
-        /// <param name="direction">The direction in which the player's pieces advance.</param>
-        /// <param name="color">The color of the player's pieces.</param>
-        public Player(Direction direction, Color color)
+        private readonly bool _white;
+
+        public int Index
         {
-            this.Direction = direction;
-            this.Color = color;
+            get
+            {
+                if (this._white)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public Player(bool white)
+        {
+            this._white = white;
+        }
+
+        public bool Equals(Player other)
+        {
+            return this._white == other._white;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Player other && this.Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return this._white.GetHashCode();
+        }
+
+        public static bool operator ==(Player left, Player right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Player left, Player right)
+        {
+            return !(left == right);
+        }
+
+        public override string ToString()
+        {
+            return resourceManager.GetString(this._white.ToString());
         }
     }
 }

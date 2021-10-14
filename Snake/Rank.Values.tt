@@ -1,0 +1,43 @@
+﻿// Project Snake: Rank.Values.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+namespace Snake
+{
+	partial struct Rank
+	{
+	<#
+		string[] ordinalNames = new string[]
+		{
+			"First",
+			"Second",
+			"Third",
+			"Fourth",
+			"Fifth",
+			"Sixth",
+			"Seventh",
+			"Eighth"
+		};
+
+		for (int i = 0; i < 8; i++)
+		{
+	#>	/// <summary>
+		///
+		/// </summary>
+		/// <value></value>
+		/// <remarks>This property was auto-generated.</remarks>
+		public static Rank <#= ordinalNames[i] #>
+		{
+			get
+			{
+				return new Rank(<#= i #>);
+			}
+		}
+
+	<#
+		}
+	#>
+}
+}

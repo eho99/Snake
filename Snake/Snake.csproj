@@ -8,4 +8,65 @@
     <DocumentationFile>Snake.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="File.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>File.Values.tt</DependentUpon>
+    </None>
+    <None Include="PieceType.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PieceType.Values.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="File.Values.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>File.Values.cs</LastGenOutput>
+    </None>
+    <None Update="PieceType.Values.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PieceType.Values.cs</LastGenOutput>
+    </None>
+    <None Update="Rank.Values.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Rank.Values.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="File.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>File.Values.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Piece.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Piece.Values.tt</DependentUpon>
+    </Compile>
+    <Compile Update="PieceType.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PieceType.Values.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Rank.Values.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Rank.Values.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Player.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

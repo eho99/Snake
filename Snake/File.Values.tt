@@ -1,0 +1,31 @@
+﻿// Project Snake: Rank.Values.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+namespace Snake
+{
+	partial struct File
+	{
+	<#
+		for (int i = 0; i < 8; i++)
+		{
+	#>	/// <summary>
+		///
+		/// </summary>
+		/// <value></value>
+		/// <remarks>This property was auto-generated.</remarks>
+		public static File <#= (char)(i + 'A') #>
+		{
+			get
+			{
+				return new File(<#= i #>);
+			}
+		}
+
+	<#
+		}
+	#>
+}
+}

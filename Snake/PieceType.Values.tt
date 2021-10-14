@@ -1,0 +1,50 @@
+﻿// Project Snake: Piece.Values.cs
+// Copyright (c) 2021 Project Snake Contributors,
+// Ishan Pranav, Eric Ho, and Kaylee Kim. All rights reserved.
+
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+namespace Snake
+{
+	partial struct PieceType
+	{
+	<#
+		string[] names = new string[]
+		{
+			"King",
+			"Queen",
+			"Rook",
+			"Bishop",
+			"Knight",
+			"Pawn"
+		};
+
+		for (int j = 0; j < names.Length; j++)
+		{
+	#>	/// <summary>
+		///
+		/// </summary>
+		/// <value></value>
+		/// <remarks>This property was auto-generated.</remarks>
+		public static PieceType <#= names[j] #>
+		{
+			get
+			{
+				return new PieceType(<#= j + 1 #>);
+			}
+		}
+
+	<#}#>
+	/// <summary>
+		///
+		/// </summary>
+		/// <value></value>
+		public static PieceType None
+		{
+			get
+			{
+				return new PieceType();
+			}
+		}
+	}
+}

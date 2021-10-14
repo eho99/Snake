@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Snake.Application.Windows
@@ -13,6 +15,7 @@ namespace Snake.Application.Windows
     {
         private readonly Dictionary<Square, SquarePictureBox> _squarePictureBoxes = new Dictionary<Square, SquarePictureBox>();
         private readonly InitialBoardViewState _intialState = new InitialBoardViewState();
+        private readonly PieceResourceManager _pieceResourceManager = new PieceResourceManager();
 
         private Board _board = new Board();
         private IBoardViewState _state;
@@ -34,7 +37,7 @@ namespace Snake.Application.Windows
 
                 foreach (SquarePictureBox squarePictureBox in this._squarePictureBoxes.Values)
                 {
-                    squarePictureBox.Update(value);
+                    squarePictureBox.Update(value, this._pieceResourceManager);
                 }
 
                 this._board = value;
@@ -48,16 +51,34 @@ namespace Snake.Application.Windows
 
         public BoardView()
         {
-            PieceResourceManager pieceResourceManager = new PieceResourceManager();
-
             foreach (Square square in Square.GetValues())
             {
-                SquarePictureBox squarePictureBox = new SquarePictureBox(square, pieceResourceManager);
+                SquarePictureBox squarePictureBox = new SquarePictureBox(square);
+                bool down = false;
 
-                squarePictureBox.Click += (sender, e) => this.Select(squarePictureBox.Value);
+                //squarePictureBox.Click += (sender, e) =>
+                //{
+                //    this.Select(squarePictureBox.Value);
+                //};
+                squarePictureBox.MouseDown += (sender, e) =>
+                {
+                    down = true;
+                    this.Select(squarePictureBox.Value);
+                };
+                squarePictureBox.MouseMove += (sender, e) =>
+                {
+                    if (down)
+                    {
+                        this.DoDragDrop(new Object(), DragDropEffects.Move);
+                        down = false;
+                    }
+                };
+                squarePictureBox.MouseUp += (sender, e) => down = false;
+                squarePictureBox.DragEnter += (sender, e) => e.Effect = DragDropEffects.Move;
+                squarePictureBox.DragDrop += (sender, e) => this.Select(squarePictureBox.Value);
 
                 squarePictureBox.Fit(this.Size);
-                squarePictureBox.Update(this.Board);
+                squarePictureBox.Update(this.Board, this._pieceResourceManager);
 
                 this.Controls.Add(squarePictureBox);
                 this._squarePictureBoxes.Add(square, squarePictureBox);
@@ -98,7 +119,7 @@ namespace Snake.Application.Windows
 
         private void OnBoardUpdated(object sender, SquareEventArgs e)
         {
-            this._squarePictureBoxes[e.Value].Update(this.Board);
+            this._squarePictureBoxes[e.Value].Update(this.Board, this._pieceResourceManager);
         }
 
         protected override void OnResize(EventArgs e)
@@ -117,6 +138,8 @@ namespace Snake.Application.Windows
             {
                 value.Dispose();
             }
+
+            this._pieceResourceManager.Dispose();
 
             base.Dispose(disposing);
         }

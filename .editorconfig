@@ -81,7 +81,7 @@ csharp_style_var_for_built_in_types = false
 csharp_style_var_when_type_is_apparent = false
 
 # Expression-bodied members
-csharp_style_expression_bodied_accessors =true:silent
+csharp_style_expression_bodied_accessors =false:silent
 csharp_style_expression_bodied_constructors = false
 csharp_style_expression_bodied_indexers =false:silent
 csharp_style_expression_bodied_lambdas = true:warning
@@ -250,3 +250,6 @@ dotnet_naming_style.ends_with_async.required_prefix =
 dotnet_naming_style.ends_with_async.required_suffix = Async
 dotnet_naming_style.ends_with_async.word_separator = 
 dotnet_naming_style.ends_with_async.capitalization = pascal_case
+
+[*.{cs,vb}]
+dotnet_diagnostic.CA1000.severity=suggestion

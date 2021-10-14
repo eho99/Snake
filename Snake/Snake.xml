@@ -4,420 +4,165 @@
         <name>Snake</name>
     </assembly>
     <members>
-        <member name="T:Snake.Board">
-            <summary>
-            Represents a rectangular board.
-            </summary>
-        </member>
-        <member name="P:Snake.Board.Item(Snake.Square)">
-            <summary>
-            Gets the piece on the given square.
-            </summary>
-            <param name="square">The square that contains the piece.</param>
-            <value>The piece on the given square or <see langword="null"/> if the square is empty.</value>
-        </member>
-        <member name="E:Snake.Board.Updated">
-            <summary>
-            Occurs when the board is updated.
-            </summary>
-        </member>
-        <member name="M:Snake.Board.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.Board"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.Board.TryGetPiece(Snake.Square,Snake.Piece@)">
-            <summary>
-            Gets the piece on the given square. A return value indicates whether the operation succeeded.
-            </summary>
-            <param name="square">The square that contains the piece.</param>
-            <param name="result">When this method returns, contains the piece on the square, if a piece occupies the square, or <see langword="null"/> if square is empty. This parameter is treated as uninitialized.</param>
-            <returns><see langword="true"/> if a piece occupies the square; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:Snake.Board.Insert(Snake.Piece,Snake.Square)">
-            <summary>
-            Places a piece on an empty destination square.
-            </summary>
-            <param name="piece"></param>
-            <param name="square"></param>
-        </member>
-        <member name="M:Snake.Board.Move(Snake.Piece,Snake.Square)">
-            <summary>
-            Moves a given piece from its current square onto an empty destination square.
-            </summary>
-            <param name="piece">The piece.</param>
-            <param name="square">The destination square.</param>
-            <exception cref="T:System.InvalidOperationException">The given <paramref name="square"/> is not empty.</exception>
-            <exception cref="T:System.ArgumentNullException">The given <paramref name="piece"/> is <see langword="null"/>.</exception>
-        </member>
-        <member name="M:Snake.Board.OnUpdated(Snake.SquareEventArgs)">
-            <summary>
-            Raises the <see cref="E:Snake.Board.Updated"/> event.
-            </summary>
-            <param name="e">The event data.</param>
-        </member>
-        <member name="T:Snake.BoardFactory">
-            <summary>
-            An <see cref="T:Snake.IBoardFactory"/> that creates instances of the <see cref="T:Snake.Board"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.BoardFactory.#ctor(Snake.IPieceFactory)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.BoardFactory"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.BoardFactory.Create(Snake.Player,Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Snake.Color">
-            <summary>
-            Specifies a color.
-            </summary>
-        </member>
-        <member name="F:Snake.Color.None">
-            <summary>
-            No color.
-            </summary>
-        </member>
-        <member name="F:Snake.Color.Light">
-            <summary>
-            The light, or white, color.
-            </summary>
-        </member>
-        <member name="F:Snake.Color.Dark">
-            <summary>
-            The dark, or black, color.
-            </summary>
-        </member>
-        <member name="T:Snake.Direction">
-            <summary>
-            Specifies a direction of motion.
-            </summary>
-        </member>
-        <member name="F:Snake.Direction.Forward">
-            <summary>
-            The back-to-front direction, beginning from the first rank and advancing toward the eighth rank.
-            </summary>
-        </member>
-        <member name="F:Snake.Direction.None">
-            <summary>
-            No specified direction.
-            </summary>
-        </member>
-        <member name="F:Snake.Direction.Backward">
-            <summary>
-            The front-to-back direction, beginning from the eighth rank and advancing toward the first rank.
-            </summary>
-        </member>
-        <member name="T:Snake.IBoardFactory">
-            <summary>
-            Defines a method for creating instances of the <see cref="T:Snake.Board"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.IBoardFactory.Create(Snake.Player,Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Board"/> class.
-            </summary>
-            <param name="first">The first player.</param>
-            <param name="second">The second player.</param>
-            <returns>The new board.</returns>
-        </member>
-        <member name="T:Snake.IMove">
-            <summary>
-            Defines a move.
-            </summary>
-        </member>
-        <member name="P:Snake.IMove.Destination">
-            <summary>
-            Gets the destination square.
-            </summary>
-            <value>The destination square.</value>
-        </member>
-        <member name="M:Snake.IMove.Execute(Snake.Board)">
-            <summary>
-            Performs the move on the given board.
-            </summary>
-            <param name="board">The board.</param>
-        </member>
-        <member name="T:Snake.IMoveFilter">
-            <summary>
-            Defines a method for filtering collections of moves.
-            </summary>
-        </member>
-        <member name="M:Snake.IMoveFilter.Filter(System.Collections.Generic.ICollection{Snake.IMove})">
-            <summary>
-            Removes inappropriate moves from the given collection.
-            </summary>
-            <param name="moves">The collection of moves.</param>
-        </member>
-        <member name="T:Snake.IMoveProvider">
-            <summary>
-            Defines a method for creating collections of moves.
-            </summary>
-        </member>
-        <member name="M:Snake.IMoveProvider.GetMoves(Snake.Piece)">
-            <summary>
-            Gets a collection of moves for a given piece.
-            </summary>
-            <param name="piece">The piece.</param>
-            <returns>A collection of moves.</returns>
-        </member>
-        <member name="T:Snake.IPieceFactory">
-            <summary>
-            Defines methods for creating instances of the <see cref="T:Snake.Piece"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.IPieceFactory.CreateRook(Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a rook.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <returns>The new rook piece.</returns>
-        </member>
-        <member name="M:Snake.IPieceFactory.CreateBishop(Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a bishop.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <returns>The new bishop piece.</returns>
-        </member>
-        <member name="M:Snake.IPieceFactory.CreateQueen(Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a queen.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <returns>The new queen piece.</returns>
-        </member>
-        <member name="M:Snake.IPieceFactory.CreateKnight(Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a knight.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <returns>The new knight piece.</returns>
-        </member>
-        <member name="M:Snake.IPieceFactory.CreatePawn(Snake.Player)">
-            <summary>
-            Creates a new instance of the <see cref="T:Snake.Piece"/> class, initialized as a pawn.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <returns>The new pawn piece.</returns>
-        </member>
-        <member name="T:Snake.Piece">
-            <summary>
-            Represents a playing piece.
-            </summary>
-        </member>
-        <member name="P:Snake.Piece.Player">
-            <summary>
-            Gets the player that owns the piece.
-            </summary>
-            <value>The player that owns the piece.</value>
-        </member>
-        <member name="P:Snake.Piece.Symbol">
-            <summary>
-            Gets the symbol for the piece in algebraic notation.
-            </summary>
-            <value>The symbol for the piece.</value>
-        </member>
-        <member name="P:Snake.Piece.Square">
-            <summary>
-            Gets the square that contains the piece.
-            </summary>
-            <value>The square that contains the piece.</value>
-        </member>
-        <member name="P:Snake.Piece.Board">
-            <summary>
-            Gets the board that contains the piece.
-            </summary>
-            <value>The board that contains the piece.</value>
-        </member>
-        <member name="M:Snake.Piece.#ctor(Snake.Player,System.Char,Snake.IMoveProvider)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.Piece"/> class.
-            </summary>
-            <param name="player">The player that owns the piece.</param>
-            <param name="symbol">The symbol for the piece in algebraic notation.</param>
-            <param name="moveProvider">The move provider that defines the piece's abilities and range of movement.</param>
-        </member>
-        <member name="M:Snake.Piece.GetMoves">
-            <summary>
-            Gets a collection of legal moves for the piece.
-            </summary>
-            <returns>A collection of legal moves.</returns>
-        </member>
-        <member name="M:Snake.Piece.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Snake.PieceFactory">
-            <summary>
-            An <see cref="T:Snake.IPieceFactory"/> that creates instances of the <see cref="T:Snake.Piece"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.PieceFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.PieceFactory"/> class.
-            </summary>
-        </member>
-        <member name="M:Snake.PieceFactory.CreateRook(Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.PieceFactory.CreateBishop(Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.PieceFactory.CreateQueen(Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.PieceFactory.CreateKnight(Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.PieceFactory.CreatePawn(Snake.Player)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Snake.Player">
-            <summary>
-            Represents a player.
-            </summary>
-        </member>
-        <member name="P:Snake.Player.Direction">
-            <summary>
-            Gets the direction in which the player's pieces advance.
-            </summary>
-            <value>One of the enumeration values that specifies a direction of motion.</value>
-        </member>
-        <member name="P:Snake.Player.Color">
-            <summary>
-            Gets the color of the player's pieces.
-            </summary>
-            <value>One of the enumeration values that specifies a color.</value>
-        </member>
-        <member name="M:Snake.Player.#ctor(Snake.Direction,Snake.Color)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.Player"/> class.
-            </summary>
-            <param name="direction">The direction in which the player's pieces advance.</param>
-            <param name="color">The color of the player's pieces.</param>
-        </member>
-        <member name="T:Snake.Square">
-            <summary>
-            Represents a square on a board.
-            </summary>
-        </member>
-        <member name="F:Snake.Square.Ranks">
-            <summary>
-            Specifies the number of ranks.
-            </summary>
-        </member>
-        <member name="F:Snake.Square.Files">
-            <summary>
-            Specifies the number of files.
-            </summary>
-        </member>
-        <member name="P:Snake.Square.X">
-            <summary>
-            Gets the zero-based horizontal coordinate of the square.
-            </summary>
-            <value>The zero-based horizontal coordinate. The default is <c>0</c>.</value>
-        </member>
-        <member name="P:Snake.Square.Y">
-            <summary>
-            Gets the zero-based vertical coordinate of the square.
-            </summary>
-            <value>The zero-based vertical coordinate. The default is <c>0</c>.</value>
-        </member>
-        <member name="P:Snake.Square.Rank">
-            <summary>
-            Gets the rank number of the square.
-            </summary>
-            <value>The rank number. The default is <c>8</c>.</value>
-        </member>
-        <member name="P:Snake.Square.File">
-            <summary>
-            Gets the file letter of the square.
-            </summary>
-            <value>The file letter. The default is <c>'a'</c>.</value>
-        </member>
-        <member name="P:Snake.Square.Color">
-            <summary>
-            Gets the color of the square.
-            </summary>
-            <value>One of the enumeration values that specifies a color.</value>
-        </member>
-        <member name="M:Snake.Square.#ctor(System.Char,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.Square"/> struct.	
-            </summary>
-            <param name="file">The file letter.</param>
-            <param name="rank">The rank number.</param>
-            <exception cref="T:System.ArgumentException">The value of the <paramref name="file"/> parameter is not <c>'A'</c>, <c>'B'</c>, <c>'C'</c>, <c>'D'</c>, <c>'E'</c>, <c>'F'</c>, <c>'G'</c>, or <c>'H'</c>.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">The value of the <paramref name="rank"/> parameter is less than <c>1</c> or greater than <c>8</c>.</exception>
-        </member>
-        <member name="M:Snake.Square.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.Square"/> struct.	
-            </summary>
-            <param name="x">The zero-based horizontal coordinate.</param>
-            <param name="y">The zero-based vertical coordinate.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">The value of the <paramref name="x"/> or <paramref name="y"/> parameter is less than <c>0</c> or greater than <c>7</c>.</exception>
-        </member>
-        <member name="M:Snake.Square.TryCreate(System.Int32,System.Int32,Snake.Square@)">
-            <summary>
-            Converts the zero-based horizontal and vertical coordinates of a number to a <see cref="T:Snake.Square"/> instance. A return value indicates whether the operation succeeded.
-            </summary>
-            <param name="x">The zero-based horizontal coordinate.</param>
-            <param name="y">The zero-based vertical coordinate.</param>
-            <param name="result">When this method returns, contains the square equivalent to the coordinates contained in <paramref name="x"/> and <paramref name="y"/>, if the conversion succeeded, or the default <see cref="T:Snake.Square"/> instance if the conversion failed. The conversion fails if the <paramref name="x"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Files"/> or if the <paramref name="y"/> parameter is negative or greater than one less than the number of <see cref="F:Snake.Square.Ranks"/>. This parameter is treated as uninitialized.</param>
-            <returns><see langword="true"/> if the square was created successfully; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:Snake.Square.GetValues">
-            <summary>
-            Gets a collection of new <see cref="T:Snake.Square"/> instances that represent all the possible values.
-            </summary>
-            <returns>A collection of new <see cref="T:Snake.Square"/> instances.</returns>
-        </member>
-        <member name="M:Snake.Square.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.Square.Equals(Snake.Square)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.Square.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snake.Square.op_Equality(Snake.Square,Snake.Square)">
-            <summary>
-            Determines whether two specified instances of <see cref="T:Snake.Square"/> are equal.
-            </summary>
-            <param name="left">The first object to compare.</param>
-            <param name="right">The second object to compare.</param>
-            <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> represent the same square; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:Snake.Square.op_Inequality(Snake.Square,Snake.Square)">
-            <summary>
-            Determines whether two specified instances of <see cref="T:Snake.Square"/> are not equal.
-            </summary>
-            <param name="left">The first object to compare.</param>
-            <param name="right">The second object to compare.</param>
-            <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> do not represent the same square; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:Snake.Square.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="T:Snake.SquareEventArgs">
-            <summary>
-            Provides data for the <see cref="E:Snake.Board.Updated"/> event.	
-            </summary>
-        </member>
-        <member name="P:Snake.SquareEventArgs.Value">
-            <summary>
-            Gets the square.
-            </summary>
-            <value>The square.</value>
-        </member>
-        <member name="M:Snake.SquareEventArgs.#ctor(Snake.Square)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Snake.SquareEventArgs"/> class.
-            </summary>
-            <param name="value">The square.</param>
+        <member name="P:Snake.File.A">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.B">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.C">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.D">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.E">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.F">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.G">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.File.H">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.King">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.Queen">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.Rook">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.Bishop">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.Knight">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.Pawn">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.PieceType.None">
+             <summary>
+            
+             </summary>
+             <value></value>
+        </member>
+        <member name="P:Snake.Rank.First">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Second">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Third">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Fourth">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Fifth">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Sixth">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Seventh">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
+        </member>
+        <member name="P:Snake.Rank.Eighth">
+             <summary>
+            
+             </summary>
+             <value></value>
+             <remarks>This property was auto-generated.</remarks>
         </member>
     </members>
 </doc>

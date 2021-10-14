@@ -32,24 +32,19 @@ namespace Snake.Application.Windows
                 {
                     IMove move = this._moves.SingleOrDefault(x => x.Destination == square);
 
-                    if (move is null)
-                    {
-                        context.Reset();
-                        context.Select(square);
-                    }
-                    else
+                    if (move is not null)
                     {
                         move.Execute(context.Board);
                     }
+
+                    context.Reset();
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message);
-                }
-                finally
-                {
+
                     context.Reset();
-                    context.Select(square);
+                    context.Select(this._piece.Square);
                 }
             }
         }
